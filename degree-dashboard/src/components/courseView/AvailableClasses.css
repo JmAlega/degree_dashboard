@@ -1,0 +1,71 @@
+button {
+  background-color: white;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 1px 2px 5px grey;
+  text-align: left;
+  height: 38px;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
+button:active {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 30%;
+  height: 100px;
+  box-shadow: none;
+  background-color: white;
+}
+
+.addButton {
+  margin-top: auto;
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+.reviewButton {
+  font-weight: bold;
+}
+
+.classes {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  margin-top: 30px;
+  background-color: white;
+}
+
+.classAvailability {
+  padding: 10px;
+  background-color: white;
+}
+
+.profInfo {
+  width: 60%;
+  margin-right: 20px;
+  height: 100px;
+  background-color: white;
+}
+
+.professorName {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  background-color: white;
+}
+
