@@ -3,18 +3,18 @@ import AvailableClasses from './AvailableClasses'
 import CourseInfo from './CourseInfo'
 import './CourseView.css';
 
-function CourseView ({courseName}) {
+function CourseView (props) {
   return (
     <div className="courseViewPage">
-      <h1>{courseName}</h1>
+      <h1>{props.courseName}</h1>
     <div className="sections">
 
       <section className="info">
 
-        <CourseInfo desc="This is a description" 
-                    pre="These are prerequisites"
-                    reqFor="These are classes this class is required for"
-                    req="Is this course required for your major"
+        <CourseInfo desc={props.desc} 
+                    pre={props.pre}
+                    reqFor={props.reqFor}
+                    req={props.req}
         />
       </section>
 
