@@ -13,7 +13,7 @@ module.exports = function(app, nodemailer) {
     });
   
     let mailOptions = {
-      from: '"Degree Dashboard" <degreedashboard@gmail.com>',
+      from: `"Degree Dashboard" <${process.env.EMAIL}>`,
       to: `${req.body.email}`,
       subject: 'Test email from Degree Dashboard',
       text: 'plain text here',
