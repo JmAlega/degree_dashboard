@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import miner from './images/miner.png';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 
 const useStyles = makeStyles((theme) => ({
