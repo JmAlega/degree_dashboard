@@ -1,7 +1,7 @@
 const courseRoutes = require('./course_routes.js');
-const authentication = require('./authentication.js');
+const userRoutes = require('./user_routes.js'); 
 
-module.exports = function(app, db, nodemailer) {
-  courseRoutes(app, db);
-  authentication(app, nodemailer);
+module.exports = function(app, client, nodemailer) {
+  courseRoutes(app, client);
+  userRoutes(app, client, nodemailer);
 };
