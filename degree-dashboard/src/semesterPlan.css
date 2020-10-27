@@ -1,0 +1,86 @@
+* {
+  font-family:  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />;
+}
+
+
+
+button {
+  background-color: white;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 1px 2px 5px grey;
+  text-align: left;
+}
+
+section {
+  border-radius: 4px;
+  box-shadow: 1px 2px 5px grey;
+  
+}
+
+p {
+  padding: 5px;
+}
+
+h1 {
+  margin: auto;
+  text-align: center;
+  width: 50%;
+  font-size: 20px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 1px 2px 5px grey;
+}
+
+h2 {
+  text-align: left;
+  width: 25%;
+  font-size: 20px;
+  height: 2%;
+  margin-top: 3px;
+}
+
+
+.addButton {
+  padding: 5px;
+  font-weight: bold;
+  width: auto;
+  height: 100%;
+    text-align: center;
+	margin-left: 0px;
+	position: left;
+}
+
+.addSem {
+  width: auto;
+  height: auto;
+  box-shadow: none;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.semesterViewPg{
+	
+}
+
+.sections {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  padding-top: 20px;
+}
+
+.info {
+  width: 800px;
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+.currentClasses {
+  margin-bottom: 25px;
+  text-align: center;
+  width: 97%;
+  padding: 10px;
+}

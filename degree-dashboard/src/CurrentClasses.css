@@ -1,0 +1,57 @@
+* {
+  font-family: <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />;
+}
+
+button {
+  border-radius: 4px;
+  border: none;
+  box-shadow: 1px 2px 5px grey;
+  text-align: center;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
+button:active {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+
+
+.buttons {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  width: 100%;
+  height: auto;
+  box-shadow: none;
+  padding: 12px;
+  text-align: center;
+}
+
+.courseButton {
+  padding: 5px;
+  font-weight: bold;
+  width: 100%;
+
+  height: 100%;
+    text-align: center;
+}
+
+.classes {
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+  margin-top: 3px;
+
+}
+
+
+
