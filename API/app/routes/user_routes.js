@@ -5,11 +5,11 @@ module.exports = function(app, client, nodemailer) {
   const db = client.db("Authentication");
 
   // Desc   -> Signs in existing user, checking authentication status
-  // Params -> none
-  // Body   -> email, username, password
+  // Params -> username
+  // Body   -> none
   // Result -> Return whether user is authenticated or not
-  app.get('/api/loginUser/:user', (req,res) => {
-    db.collection('Users').findOne({'username':req.params.user})
+  app.get('/api/loginUser/:username', (req,res) => {
+    db.collection('Users').findOne({'username':req.params.username})
       .then(doc => {
         if (doc != null) {
           res.send(doc);
