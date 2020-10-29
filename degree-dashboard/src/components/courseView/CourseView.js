@@ -9,7 +9,7 @@ function CourseView (props) {
 
   return (
     <div className="courseViewPage">
-      <h1>{props.courseName}</h1>
+      <h1 className="title">{props.courseName}</h1>
     <div className="sections">
 
       <section className="info">
@@ -22,7 +22,7 @@ function CourseView (props) {
       </section>
 
       <section className="availableClasses">
-        <h2>Available Classes: </h2>
+        <h2 className="availableClassesTitle">Available Classes: </h2>
 
         {classes.map(available_classes => (
           <AvailableClasses prof={available_classes.prof} avail={available_classes.avail}/>

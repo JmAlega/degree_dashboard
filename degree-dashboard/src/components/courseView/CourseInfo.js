@@ -3,35 +3,35 @@ import './CourseInfo.css';
 
 function CourseInfo ({desc, pre, reqFor, req}) {
   return (
-    <>
+    <div className="courseInfoContainer">
       <div className="descriptors">
-        <h3>Description: </h3>
-        <section className="descriptor_info">
-          <p>{desc}</p>
+        <h3 className="descriptorTitle">Description: </h3>
+        <section className="descriptorBox">
+          <p className="information">{desc}</p>
         </section>
       </div>
 
       <div className="descriptors">
-        <h3>Prerequisites: </h3>
-        <section className="descriptor_info">
-          <p>{pre}</p>
+        <h3 className="descriptorTitle">Prerequisites: </h3>
+        <section className="descriptorBox">
+          <p className="information">{pre}</p>
         </section>
       </div>
 
       <div className="descriptors">
-        <h3>Required For: </h3>
-        <section className="descriptor_info">
-          <p>{reqFor}</p>
+        <h3 className="descriptorTitle">Required For: </h3>
+        <section className="descriptorBox">
+          <p className="information">{reqFor}</p>
         </section>
       </div>
 
       <div className="descriptors">
-        <h3>Required: </h3>
-        <section className="descriptor_info">
-          <p>{req}</p>
+        <h3 className="descriptorTitle">Required: </h3>
+        <section className="descriptorBox">
+          <p className="information">{req}</p>
         </section>
       </div>
-    </>
+    </div>
   )
 }
 

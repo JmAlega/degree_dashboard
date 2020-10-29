@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import CourseView from './components/courseView/CourseView.js'
+import UploadDegree from './components/uploadDegree/UploadDegree.js'
 
 function App() {
 
@@ -21,13 +22,15 @@ function App() {
 
   return (
     <div className="App">
-      <CourseView courseName="CS 1200 Discrete Math for Computer Science" 
+      {/* <CourseView courseName="CS 1200 Discrete Math for Computer Science" 
                   desc="This is a description" 
                   pre="These are prerequisites" 
                   reqFor="These are classes this course is required for"
                   req="Is this class required for your major"
                   class_array={classes}
-      />
+      /> */}
+
+      <UploadDegree />
     </div>
   );
 }

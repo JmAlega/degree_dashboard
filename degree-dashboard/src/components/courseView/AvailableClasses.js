@@ -1,6 +1,6 @@
 import React from 'react';
 import './AvailableClasses.css';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 function AvailableClasses ({prof, avail}) {
   return (

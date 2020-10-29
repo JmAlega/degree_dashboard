@@ -1,23 +1,52 @@
-button {
+.reviewButton {
   background-color: white;
   border-radius: 4px;
   border: none;
   box-shadow: 1px 2px 5px grey;
   text-align: left;
   height: 38px;
+  font-weight: bold;
 }
 
-button:hover {
+.reviewButton:hover {
   background-color: lightgray;
+  cursor: pointer;
 }
 
-button:active {
+.reviewButton:active {
   box-shadow: none;
   border: none;
   outline: none;
 }
 
-button:focus {
+.reviewButton:focus {
+  outline: none;
+}
+
+.addButton {
+  background-color: white;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 1px 2px 5px grey;
+  text-align: left;
+  height: 38px;
+  margin-top: auto;
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+.addButton:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.addButton:active {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.addButton:focus {
   outline: none;
 }
 
@@ -30,16 +59,6 @@ button:focus {
   height: 100px;
   box-shadow: none;
   background-color: white;
-}
-
-.addButton {
-  margin-top: auto;
-  margin-bottom: 0px;
-  font-weight: bold;
-}
-
-.reviewButton {
-  font-weight: bold;
 }
 
 .classes {
@@ -60,12 +79,14 @@ button:focus {
   margin-right: 20px;
   height: 100px;
   background-color: white;
+  border-radius: 4px;
+  box-shadow: 1px 2px 5px grey;
 }
 
 .professorName {
   margin-top: 0px;
   margin-bottom: 0px;
-  padding-bottom: 0px;
   background-color: white;
+  padding: 10px;
 }
 
