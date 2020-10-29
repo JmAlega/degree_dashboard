@@ -3,6 +3,24 @@ const cryptoRandomString = require('crypto-random-string')
 
 module.exports = function(app, client, nodemailer) {
   const db = client.db("Authentication");
+
+  // Desc   -> Signs in existing user, checking authentication status
+  // Params -> none
+  // Body   -> email, username, password
+  // Result -> Return whether user is authenticated or not
+  app.get('/api/loginUser/:user', (req,res) => {
+    db.collection('Users').findOne({'username':req.params.user})
+      .then(doc => {
+        if (doc != null) {
+          res.send(doc);
+        } else {
+          res.status(401).json({error: 'User not authenticated!'});
+        }
+      })
+      .catch(err => {
+        res.status(404).json({error: 'Could not find user in database'});
+      });
+  });
   
   // Desc   -> Signs up a new user
   // Params -> none
@@ -43,7 +61,7 @@ module.exports = function(app, client, nodemailer) {
                   console.log("POST /api/createUser/" + req.body.email);
                 })
                 .catch(err => {
-                  res.send(err);
+                  res.status(403).json({error: 'Could not insert user into database'});
                 });
               }
             });
@@ -52,7 +70,7 @@ module.exports = function(app, client, nodemailer) {
       })
       .catch(err => {
         console.log(err);
-        res.send(err);
+        res.status(404).json({error: 'Could not find user in database'});
       });
   });
 
