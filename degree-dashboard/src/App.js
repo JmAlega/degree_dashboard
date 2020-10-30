@@ -1,23 +1,52 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import ProtectedRoute from './Components/ProtectedRoute';
+
+import Dashboard from './Components/Dashboard';
+import CourseView from './Components/CourseView';
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
+import Index from './Components/Index';
+
 
 function App() {
+  if (sessionStorage.getItem('loggedIn') == null) {
+    sessionStorage.setItem('loggedIn', 'false');
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Router>
+          <Switch>
+            {
+            /*
+              Public Routes
+            */
+            }
+
+            <Route path='/login' component={Login} />
+            <Route path='/sign-up' component={SignUp} />
+
+            {
+            /* 
+              Private Routes
+            */
+            }
+
+            {/* Main Page */}
+            <ProtectedRoute exact path='/' component={Index} />
+
+            {/* Dashboard */}
+            <ProtectedRoute path='/dashboard' component={Dashboard} />
+
+            {/* Course View */}
+            <ProtectedRoute path='/course-view' component={CourseView} />
+          </Switch>
+
+        </Router>
       </header>
     </div>
   );
