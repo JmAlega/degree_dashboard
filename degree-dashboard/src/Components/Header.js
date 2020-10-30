@@ -8,36 +8,30 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Miner from '../images/logo.png';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
 import { useHistory } from 'react-router-dom';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box p={3}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
-      </div>
-    );
-  }
-  
-  TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-  };
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#FFFFFF',
+      contrastText: "#000000"
+
+    },
+    primaryText: {
+      main: '#FFFFFF',
+    },
+    secondary: {
+      main: green[500],
+    },
+    text: {
+      main: "#000000"
+    },
+    contrastThreshold: 3,
+  },
+});
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -58,40 +52,54 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(2),
 
     },
-    input: {
-        color: "white"
-    }
+   
     
 }));
 
 
-
-export default function Header() {
-    const [value, setValue] = React.useState(0);
+const Header = ({component: Component, ...rest }) => {
     const classes = useStyles();
     const loggedIn = true;
-    
-    const changePage = (x) => {
-      let history = useHistory();
-      if (x == 0) {
-        history.push("/dashboard")
-      } else if (x == 1) {
-        history.push("/schedule")
-      } else if (x == 2) {
-        history.push("/schedule")
-      } else if (x == 3) {
-        history.push("/schedule")
-      } else if (x == 4) {
-        history.push("/schedule")
-      }
-    
-    }
-    
-   
+    const history = useHistory();
 
+    const dash = () => {
+      console.log(history.location);
+      history.push('/dashboard');
+    }
+    const schedule = () => {
+      history.push('schedule');
+    }
+    const courseview = () => {
+      console.log(history.location);
+      history.push('course-view');
+    }
+    const courses= () => {
+      history.push('courses');
+    }
+    const courseoutline = () => {
+      history.push('courseoutline');
+    }
+
+    function getVariant(btnType) {
+      console.log(history.location.pathname)
+      if (history.location.pathname == btnType) {
+        console.log("YES")
+        return "outlined";
+      }
+      return "default";
+    }
+    function getColor(btnType) {
+      console.log(history.location.pathname)
+      if (history.location.pathname == btnType) {
+        console.log("YES")
+        return "secondary";
+      }
+      return "primary";
+    }
 
 
     return (
+      <ThemeProvider theme={theme}>
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
@@ -101,12 +109,12 @@ export default function Header() {
                         Degree Dashboard
                     </Typography>
                     <div className={classes.buttonrow}>
-                    <Tabs value={value} aria-label="simple tabs example">
-                        <Tab label="Dashboard" {...changePage(0)} />
-                        <Tab label="Schedule" {...changePage(1)} />
-                        <Tab label="Course History" {...changePage(2)} />
-                        <Tab label="Courses" {...changePage(3)} />
-                        <Tab label="Course Outline" {...changePage(4)} />
+                    <div >
+                        <Button color={getColor("/dashboard")} variant={getVariant("/dashboard")} onClick={dash}>Dashboard</Button>
+                        <Button color={getColor("/schedule")} variant={getVariant("/schedule")} onClick={schedule}>Schedule</Button>
+                        <Button color={getColor("/course-view")} variant={getVariant("/course-view")} onClick={courseview}>Course History</Button>
+                        <Button color={getColor("/courses")} variant={getVariant("/courses")} onClick={courses}>Courses</Button>
+                        <Button color={getColor("/course-outline")} variant={getVariant("/course-outline")} onClick={courseoutline}>Course Outline</Button>
                         {loggedIn ? <IconButton
 
                         aria-label="account of current user"
@@ -118,11 +126,13 @@ export default function Header() {
                         </IconButton> :
                         <Button color="inherit">Login</Button>
                         }
-                    </Tabs>
+                    </div>
                         
                     </div>
                 </Toolbar>
             </AppBar>
         </div>
-    );
+        </ThemeProvider>
+    )
 }
+export default Header;
