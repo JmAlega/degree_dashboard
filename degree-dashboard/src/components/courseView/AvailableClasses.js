@@ -1,22 +1,22 @@
 import React from 'react';
-import './AvailableClasses.css';
+import styles from "./AvailableClasses.module.css"
 // import { Link } from 'react-router-dom'
 
 function AvailableClasses ({prof, avail}) {
   return (
-    <div className="classes">
-      <section className="profInfo">
-        <h3 className="professorName">{prof}</h3>
-        <p className="classAvailability">{avail}</p>
+    <div className={styles.classes}>
+      <section className={styles.profInfo}>
+        <h3 className={styles.professorName}>{prof}</h3>
+        <p className={styles.classAvailability}>{avail}</p>
       </section>
 
-      <section className="buttons">
+      <section className={styles.buttons}>
         {/* <Link to=""> */}
-          <button className="reviewButton">Teacher Reviews</button>
+          <button className={styles.reviewButton}>Teacher Reviews</button>
         {/* </Link> */}
 
         {/* <Link to=""> */}
-          <button className="addButton">Add to Schedule</button>
+          <button className={styles.addButton}>Add to Schedule</button>
         {/* </Link> */}
       </section>
     </div>

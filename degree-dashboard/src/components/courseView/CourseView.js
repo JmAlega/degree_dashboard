@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import AvailableClasses from './AvailableClasses'
 import CourseInfo from './CourseInfo'
-import './CourseView.css';
+import styles from "./CourseView.module.css"
 
 function CourseView (props) {
 
   const [classes] = useState(props.class_array);
 
   return (
-    <div className="courseViewPage">
-      <h1 className="title">{props.courseName}</h1>
-    <div className="sections">
+    <div className={styles.courseViewPage}>
+      <h1 className={styles.title}>{props.courseName}</h1>
+    <div className={styles.sections}>
 
-      <section className="info">
+      <section className={styles.info}>
 
         <CourseInfo desc={props.desc} 
                     pre={props.pre}
@@ -21,8 +21,8 @@ function CourseView (props) {
         />
       </section>
 
-      <section className="availableClasses">
-        <h2 className="availableClassesTitle">Available Classes: </h2>
+      <section className={styles.availableClasses}>
+        <h2 className={styles.availableClassesTitle}>Available Classes: </h2>
 
         {classes.map(available_classes => (
           <AvailableClasses prof={available_classes.prof} avail={available_classes.avail}/>

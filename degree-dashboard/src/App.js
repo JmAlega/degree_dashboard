@@ -2,13 +2,12 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import ProtectedRoute from './Components/ProtectedRoute';
-import CourseView from './Components/courseView/CourseView.js'
-import UploadDegree from './Components/uploadDegree/UploadDegree.js'
-
 import Dashboard from './Components/Dashboard';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Index from './Components/Index';
+import CourseView from './Components/courseView/CourseView.js'
+import UploadDegree from './Components/uploadDegree/UploadDegree.js'
 
 
 function App() {
