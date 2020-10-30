@@ -1,36 +1,53 @@
 import React from 'react';
 import './App.css';
-import CourseView from './components/courseView/CourseView.js'
-import UploadDegree from './components/uploadDegree/UploadDegree.js'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import ProtectedRoute from './Components/ProtectedRoute';
+import CourseView from './Components/courseView/CourseView.js'
+import UploadDegree from './Components/uploadDegree/UploadDegree.js'
+
+import Dashboard from './Components/Dashboard';
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
+import Index from './Components/Index';
+
 
 function App() {
-
-  // placeholder array showing the format
-  const classes = [
-        { 
-          prof: 'Markowsky', 
-          avail: 'MWF 11-2'
-        },
-        { 
-          prof: 'Morales', 
-          avail: 'MWF 1-2'
-        },
-        { 
-          prof: 'Price', 
-          avail: 'T TH 10-11'
-        }]
-
+  if (sessionStorage.getItem('loggedIn') == null) {
+    sessionStorage.setItem('loggedIn', 'false');
+  }
+  
   return (
     <div className="App">
-      {/* <CourseView courseName="CS 1200 Discrete Math for Computer Science" 
-                  desc="This is a description" 
-                  pre="These are prerequisites" 
-                  reqFor="These are classes this course is required for"
-                  req="Is this class required for your major"
-                  class_array={classes}
-      /> */}
+      <header className="App-header">
+        <Router>
+          <Switch>
+            {
+            /*
+              Public Routes
+            */
+            }
 
-      <UploadDegree />
+            <Route path='/login' component={Login} />
+            <Route path='/sign-up' component={SignUp} />
+
+            {
+            /* 
+              Private Routes
+            */
+            }
+
+            {/* Main Page */}
+            <ProtectedRoute exact path='/' component={Index} />
+
+            {/* Dashboard */}
+            <ProtectedRoute path='/dashboard' component={Dashboard} />
+
+            {/* Course View */}
+            <ProtectedRoute path='/course-view' component={CourseView} />
+          </Switch>
+
+        </Router>
+      </header>
     </div>
   );
 }
