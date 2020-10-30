@@ -64,22 +64,31 @@ const useStyles = makeStyles((theme) => ({
     
 }));
 
-function a11yProps(index) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
+
 
 export default function Header() {
     const [value, setValue] = React.useState(0);
     const classes = useStyles();
+    const loggedIn = true;
+    
+    const changePage = (x) => {
+      let history = useHistory();
+      if (x == 0) {
+        history.push("/dashboard")
+      } else if (x == 1) {
+        history.push("/schedule")
+      } else if (x == 2) {
+        history.push("/schedule")
+      } else if (x == 3) {
+        history.push("/schedule")
+      } else if (x == 4) {
+        history.push("/schedule")
+      }
+    
+    }
     
    
-    const loggedIn = true;
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-      };
+
 
 
     return (
@@ -92,12 +101,12 @@ export default function Header() {
                         Degree Dashboard
                     </Typography>
                     <div className={classes.buttonrow}>
-                    <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="Dashboard" {...a11yProps(0)} />
-                        <Tab label="Schedule" {...a11yProps(1)} />
-                        <Tab label="Course History" {...a11yProps(2)} />
-                        <Tab label="Courses" {...a11yProps(3)} />
-                        <Tab label="Course Outline" {...a11yProps(4)} />
+                    <Tabs value={value} aria-label="simple tabs example">
+                        <Tab label="Dashboard" {...changePage(0)} />
+                        <Tab label="Schedule" {...changePage(1)} />
+                        <Tab label="Course History" {...changePage(2)} />
+                        <Tab label="Courses" {...changePage(3)} />
+                        <Tab label="Course Outline" {...changePage(4)} />
                         {loggedIn ? <IconButton
 
                         aria-label="account of current user"
@@ -114,21 +123,6 @@ export default function Header() {
                     </div>
                 </Toolbar>
             </AppBar>
-            <TabPanel value={value} index={0}>
-                Put Dashboard Component here
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                Put Schedule Component Here
-                </TabPanel>
-                <TabPanel value={value} index={2}>
-                Put Course History Component Here
-                </TabPanel>
-                <TabPanel value={value} index={3}>
-                Put Courses Component Here
-                </TabPanel>
-                <TabPanel value={value} index={4}>
-                Put Course Outline Component Here
-                </TabPanel>
         </div>
     );
 }
