@@ -1,6 +1,8 @@
 var ObjectID = require('mongodb').ObjectID
 
-module.exports = function(app, db) {
+module.exports = function(app, client) {
+  const db = client.db("Subjects");
+  
   // Desc   -> Returns all documents within a collection
   // Params -> string: subjectId
   // Body   -> none
