@@ -74,35 +74,10 @@ export default function Login() {
             SUBMIT
           </Button>
           <h6>
-             <Link to='/sign-up'> DON'T HAVE AN ACCOUNT? CLICK HERE TO SIGN UP </Link>
+            <center><Link to='/sign-up'> DON'T HAVE AN ACCOUNT? CLICK HERE TO SIGN UP </Link></center>
           </h6>
         </form>
       </div>
     </Container>
   );
 }
-
-// const Login = () => {
-//   const history = useHistory();
-//   const loginCorrect = true; 
-
-//   const checkCredentials = () => {
-//     if (loginCorrect == true) {
-//       sessionStorage.setItem('loggedIn', 'true');
-//       history.push('/');
-//     } else {
-//       console.log('Credentials are false!');
-//     }
-//   }
-
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         LOGIN
-//         <button onClick={checkCredentials}> Log In! </button>
-//       </header>
-//     </div>
-//   )
-// }
-
-// export default Login;
