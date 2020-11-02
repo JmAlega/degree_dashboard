@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -62,9 +61,10 @@ const Header = ({component: Component, ...rest }) => {
     const loggedIn = true;
     const history = useHistory();
 
+    // These functions load the correct route when the button in the header is pressed.
     const dash = () => {
       console.log(history.location);
-      history.push('/dashboard');
+      history.push('dashboard');
     }
     const schedule = () => {
       history.push('schedule');
@@ -80,17 +80,22 @@ const Header = ({component: Component, ...rest }) => {
       history.push('courseoutline');
     }
 
+    // getVariant is used for styling the button of the page the user is currently on. As of now,
+    //   the button gets outlined if it is selected
     function getVariant(btnType) {
       console.log(history.location.pathname)
-      if (history.location.pathname == btnType) {
+      if (history.location.pathname === btnType) {
         console.log("YES")
         return "outlined";
       }
       return "default";
     }
+
+    // getColor is used for styling the button of the page the user is currently on. As of now,
+    //   the button gets colored to the secondary color in the color scheme.
     function getColor(btnType) {
       console.log(history.location.pathname)
-      if (history.location.pathname == btnType) {
+      if (history.location.pathname === btnType) {
         console.log("YES")
         return "secondary";
       }

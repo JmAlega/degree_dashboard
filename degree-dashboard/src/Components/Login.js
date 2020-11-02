@@ -1,7 +1,6 @@
 // THIS COMPONENT IS JUST A PLACEHOLDER! PUT THE ACTUAL LOGIN COMPONENT HERE
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import Header from './Header';
 
 const Login = () => {
   const history = useHistory();

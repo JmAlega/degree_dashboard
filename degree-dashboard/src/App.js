@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Components/Header';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import ProtectedRoute from './Components/ProtectedRoute';
