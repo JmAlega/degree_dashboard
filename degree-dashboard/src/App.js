@@ -17,39 +17,34 @@ function App() {
 
   
   return (
-    <div className="App">
-  
-        <Router>
-          
-          <Switch>
-            {
-            /*
-              Public Routes
-            */
-            }
+    <Router>
+      <Switch>
+        {
+        /*
+          Public Routes
+        */
+        }
 
-            <Route path='/login' component={Login} />
-            <Route path='/sign-up' component={SignUp} />
+        <Route path='/login' component={Login} />
+        <Route path='/sign-up' component={SignUp} />
 
-            {
-            /* 
-              Private Routes
-            */
-            }
+        {
+        /* 
+          Private Routes
+        */
+        }
 
-            {/* Main Page */}
-            <ProtectedRoute exact path='/' component={Index} />
+        {/* Main Page */}
+        <ProtectedRoute exact path='/' component={Index} />
 
-            {/* Dashboard */}
-            <ProtectedRoute path='/dashboard' component={Dashboard} />
+        {/* Dashboard */}
+        <ProtectedRoute path='/dashboard' component={Dashboard} />
 
-            {/* Course View */}
-            <ProtectedRoute path='/course-view' component={CourseView} />
-          </Switch>
+        {/* Course View */}
+        <ProtectedRoute path='/course-view' component={CourseView} />
+      </Switch>
 
-        </Router>
-      
-    </div>
+    </Router>
   );
 }
 
