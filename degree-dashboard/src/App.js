@@ -8,6 +8,7 @@ import SignUp from './Components/SignUp';
 import Index from './Components/Index';
 import CourseView from './Components/courseView/CourseView.js'
 import UploadDegree from './Components/uploadDegree/UploadDegree.js'
+import UploadAudit from './Components/uploadDegree/UploadAudit.js'
 
 
 function App() {
@@ -36,11 +37,19 @@ function App() {
         {/* Main Page */}
         <ProtectedRoute exact path='/' component={Index} />
 
+        {/* Course View */}
+        <ProtectedRoute path='/upload-audit-first-time' component={UploadDegree} />
+
+        {/* Course View */}
+        <ProtectedRoute path='/upload-audit' component={UploadAudit} />
+
         {/* Dashboard */}
         <ProtectedRoute path='/dashboard' component={Dashboard} />
 
         {/* Course View */}
         <ProtectedRoute path='/course-view' component={CourseView} />
+
+
       </Switch>
 
     </Router>
