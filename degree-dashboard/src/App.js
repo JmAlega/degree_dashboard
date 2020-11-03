@@ -6,7 +6,7 @@ import Dashboard from './Components/Dashboard';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Index from './Components/Index';
-import CourseView from './Components/courseView/CourseView.js'
+import CourseView from './Components/CourseView.js'
 import UploadDegree from './Components/uploadDegree/UploadDegree.js'
 import UploadAudit from './Components/uploadDegree/UploadAudit.js'
 
@@ -15,6 +15,7 @@ function App() {
   if (sessionStorage.getItem('loggedIn') == null) {
     sessionStorage.setItem('loggedIn', 'false');
   }
+
   
   return (
     <Router>
