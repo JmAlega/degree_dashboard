@@ -22,5 +22,5 @@ function AvailableClasses ({prof, avail}) {
     </div>
   )
 }
-
+//
 export default AvailableClasses;

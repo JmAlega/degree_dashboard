@@ -36,3 +36,5 @@ function CourseInfo ({desc, pre, reqFor, req}) {
 }
 
 export default CourseInfo
+
+// 
