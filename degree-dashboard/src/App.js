@@ -26,27 +26,7 @@ function App() {
         */
         }
 
-        <Route path='/login' component={() => <CourseView 
-                                            courseName="CS 1200" 
-                                            desc="This is a description" 
-                                            pre="These are prerequisites" 
-                                            reqFor="These are classes this class is required for"
-                                            req="Is this class required for your major" 
-                                            class_array={
-                                              [
-                                                { 
-                                                  avail: "MWF 11-2", 
-                                                  prof: "Morales"
-                                                }, 
-                                                { 
-                                                  avail: "MWF 2-3", 
-                                                  prof: "Price"
-                                                },
-                                                { 
-                                                  avail: "TTH 11-12:30", 
-                                                  prof: "Markowski"
-                                                },
-                                              ]} />} />
+        <Route path='/login' component={Login} />
         <Route path='/sign-up' component={SignUp} />
 
         {
