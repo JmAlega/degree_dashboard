@@ -1,9 +1,10 @@
 const jsdom = require("jsdom");
+const util = require("util");
 const { JSDOM } = jsdom;
 
 
-module.export = function(app, client) {
-  const db = client.db;
+module.exports = function(app, client) {
+  const db = client.db("Authentication");
   app.post('/api/uploadAudit', async (req, res) => {
     try {
       if(!req.files) {
@@ -12,13 +13,25 @@ module.export = function(app, client) {
           message: 'No audit uploaded'
         });
       } else {
-        let audit = req.files.audit;
-        console.log(audit);
+        let audit = readAudit(req.files.audit);
+        db.collection('Users').findOne({'email':req.body.email})
+          .then(doc => {
+            db.collection('Users').update({_id:doc._id}, {$set:{degree_audit:audit}}, (err, result) => {
+              if (err) {
+                console.log(err); 
+                res.status(500).json({error: err});
+                return;
+              }
 
-        res.send({
-          status: true,
-          message: "Audit uploaded",
-        })
+              res.send({
+                status: true,
+                message: "Audit uploaded",
+              });
+            }) 
+          })
+          .catch(err => {
+            res.status(404).json({error: 'Could not find user in database'});
+          });
       }
     } catch(err) {
       res.status(500).send(err);
@@ -27,13 +40,13 @@ module.export = function(app, client) {
 }
 
 
-function readAudit(file) {
+function readAudit (file) {
   var htmlRegex = new RegExp("html", "i");
   if(file.type && file.type.match(htmlRegex)) {
   }
 
-  var fileBlob = new Blob(file, {type: "text/html"});
-  const auditHTML = await fileBlob.text();
+  var buffer = Buffer.from(file.data);
+  const auditHTML = Buffer.from(buffer).toString();
   const dom = new JSDOM(auditHTML);
   var requirements = dom.window.document.querySelectorAll("#auditRequirements .requirement");
   var reqObj = {};
@@ -49,7 +62,12 @@ function readAudit(file) {
   for(let i = startIndex; i < requirements.length-3; i++) {
     printRequirements(requirements[i], reqObj);
   }
+  
+  // `util` allows for more complete logging to see all subarrays
   console.log(reqObj);
+  console.log(util.inspect(reqObj, {showHidden: false, depth: null}));
+  
+  return reqObj;
 }
 
 function printRequirements(requirement, reqObj) {
@@ -223,7 +241,3 @@ function printSubReqs(subRequirement, subReqObj, singleSubReq) {
     subReqObj.subGroups.push(currSubReqObj);
   }
 }
-
-
-
-
