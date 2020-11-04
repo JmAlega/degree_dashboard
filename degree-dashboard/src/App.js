@@ -6,7 +6,7 @@ import Dashboard from './Components/Dashboard';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Index from './Components/Index';
-import CourseView from './Components/CourseView.js'
+import CourseView from './Components/courseView/CourseView.js'
 import UploadDegree from './Components/uploadDegree/UploadDegree.js'
 import UploadAudit from './Components/uploadDegree/UploadAudit.js'
 
@@ -48,7 +48,27 @@ function App() {
         <ProtectedRoute path='/dashboard' component={Dashboard} />
 
         {/* Course View */}
-        <ProtectedRoute path='/course-view' component={CourseView} />
+        <ProtectedRoute path='/course-view' component={() => <CourseView 
+                                            courseName="CS 1200" 
+                                            desc="This is a description" 
+                                            pre="These are prerequisites" 
+                                            reqFor="These are classes this class is required for"
+                                            req="Is this class required for your major" 
+                                            class_array={
+                                              [
+                                                { 
+                                                  avail: "MWF 11-2", 
+                                                  prof: "Morales"
+                                                }, 
+                                                { 
+                                                  avail: "MWF 2-3", 
+                                                  prof: "Price"
+                                                },
+                                                { 
+                                                  avail: "TTH 11-12:30", 
+                                                  prof: "Markowski"
+                                                },
+                                              ]} />} />
 
 
       </Switch>
