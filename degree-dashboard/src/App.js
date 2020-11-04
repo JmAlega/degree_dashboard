@@ -6,48 +6,54 @@ import Dashboard from './Components/Dashboard';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Index from './Components/Index';
-import CourseView from './Components/courseView/CourseView.js'
+import CourseView from './Components/CourseView.js'
 import UploadDegree from './Components/uploadDegree/UploadDegree.js'
+import UploadAudit from './Components/uploadDegree/UploadAudit.js'
 
 
 function App() {
   if (sessionStorage.getItem('loggedIn') == null) {
     sessionStorage.setItem('loggedIn', 'false');
   }
+
   
   return (
-    <div className="App">
-      <header className="App-header">
-        <Router>
-          <Switch>
-            {
-            /*
-              Public Routes
-            */
-            }
+    <Router>
+      <Switch>
+        {
+        /*
+          Public Routes
+        */
+        }
 
-            <Route path='/login' component={Login} />
-            <Route path='/sign-up' component={SignUp} />
+        <Route path='/login' component={Login} />
+        <Route path='/sign-up' component={SignUp} />
 
-            {
-            /* 
-              Private Routes
-            */
-            }
+        {
+        /* 
+          Private Routes
+        */
+        }
 
-            {/* Main Page */}
-            <ProtectedRoute exact path='/' component={Index} />
+        {/* Main Page */}
+        <ProtectedRoute exact path='/' component={Index} />
 
-            {/* Dashboard */}
-            <ProtectedRoute path='/dashboard' component={Dashboard} />
+        {/* Course View */}
+        <ProtectedRoute path='/upload-audit-first-time' component={UploadDegree} />
 
-            {/* Course View */}
-            <ProtectedRoute path='/course-view' component={CourseView} />
-          </Switch>
+        {/* Course View */}
+        <ProtectedRoute path='/upload-audit' component={UploadAudit} />
 
-        </Router>
-      </header>
-    </div>
+        {/* Dashboard */}
+        <ProtectedRoute path='/dashboard' component={Dashboard} />
+
+        {/* Course View */}
+        <ProtectedRoute path='/course-view' component={CourseView} />
+
+
+      </Switch>
+
+    </Router>
   );
 }
 

@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import miner from './images/miner.png';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,7 +39,7 @@ export default function Login() {
       <div className={classes.paper}>
           <img src={miner} style={{width: 60, height:60}}/>
         <Typography component="h1" variant="h5" >
-          Sign in 
+          Login
         </Typography>
         <form className={classes.form} noValidate > 
           <TextField
@@ -52,6 +53,17 @@ export default function Login() {
             autoComplete="email"
             autoFocus
           />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="password"
+            label="password"
+            name="password"
+            autoComplete="password"
+            autoFocus
+          />
           <Button
             type="submit"
             fullWidth
@@ -59,35 +71,13 @@ export default function Login() {
             className={classes.submit}
             style={{backgroundColor: 'green', color: 'white'}}
           >
-            Sign In With SSO
+            SUBMIT
           </Button>
+          <h6>
+            <center><Link to='/sign-up'> DON'T HAVE AN ACCOUNT? CLICK HERE TO SIGN UP </Link></center>
+          </h6>
         </form>
       </div>
     </Container>
   );
 }
-
-// const Login = () => {
-//   const history = useHistory();
-//   const loginCorrect = true; 
-
-//   const checkCredentials = () => {
-//     if (loginCorrect == true) {
-//       sessionStorage.setItem('loggedIn', 'true');
-//       history.push('/');
-//     } else {
-//       console.log('Credentials are false!');
-//     }
-//   }
-
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         LOGIN
-//         <button onClick={checkCredentials}> Log In! </button>
-//       </header>
-//     </div>
-//   )
-// }
-
-// export default Login;
