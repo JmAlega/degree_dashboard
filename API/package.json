@@ -14,7 +14,8 @@
     "crypto-random-string": "^3.3.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
-    "nodemailer": "^6.4.14"
+    "nodemailer": "^6.4.14",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
