@@ -14,7 +14,7 @@ function UploadAudit () {
           <h2 className={styles.title}>Upload Audit</h2>
           
           <DropZone/>
-    
+
           <div className={styles.progress}>
             <LinearDeterminate/>
           </div>
