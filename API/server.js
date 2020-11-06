@@ -3,9 +3,11 @@ const MongoClient     = require('mongodb').MongoClient;
 const bodyParser      = require('body-parser');
 const db              = require('./config/db');
 const nodemailer      = require('nodemailer');
+var cors              = require('cors');
 const app             = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 const port = 8000;
 

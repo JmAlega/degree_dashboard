@@ -33,9 +33,9 @@ module.exports = function(app, client, nodemailer) {
   })
 
   // Desc   -> Signs in existing user, checking authentication status
-  // Params -> username
-  // Body   -> none
-  // Result -> Return whether user is authenticated or not
+  // Params -> none
+  // Body   -> email, password
+  // Result -> Returns a 200 respose with the login and activation status
   app.post('/api/loginUser', (req,res) => {
     db.collection('Users').findOne({'email':req.body.email})
       .then(doc => {
@@ -49,7 +49,10 @@ module.exports = function(app, client, nodemailer) {
             }
 
             if (result == true) {
-              res.send('Successful Login');
+              res.send({
+                login: 'Successful',
+                activation_stauts: doc.activation_status
+              });
             } else {
               res.status(401).json({error: 'Email or Password incorrect'});
             }
@@ -135,7 +138,7 @@ module.exports = function(app, client, nodemailer) {
           let mailOptions = {
             from: `"Degree Dashboard" <${process.env.EMAIL}>`,
             to: `${req.body.email}`,
-            subject: 'Test email from Degree Dashboard',
+            subject: 'Activation Code',
             text: 'plain text here',
             html: 
             `
