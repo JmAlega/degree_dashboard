@@ -5,6 +5,13 @@ const { JSDOM } = jsdom;
 
 module.exports = function(app, client) {
   const db = client.db("Authentication");
+  
+  // Desc   -> Adds degree audit to the database for a given user
+  // Params -> none
+  // Body   -> TYPE: form-data
+  //           key: 'audit' value(file): degree_audit html file
+  //           key: 'email' value(text): email
+  // Result -> array: JSON
   app.post('/api/uploadAudit', async (req, res) => {
     try {
       if(!req.files) {
