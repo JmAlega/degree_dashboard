@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import AddIcon from '@material-ui/icons/Add';
+import Header from '../Header.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,8 @@ function SemesterPlan (props) {
   const classes = useStyles();
   
    return (
+   <div>
+   <Header></Header>
    <div className="semesterViewPg">
    <Container maxWidth="sm" align="center">
    <Typography variant="h5">
@@ -67,6 +70,7 @@ function SemesterPlan (props) {
 
     </div>
     </div>
+	</div>
   )
   
 
