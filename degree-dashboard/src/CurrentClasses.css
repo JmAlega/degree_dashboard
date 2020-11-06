@@ -5,7 +5,7 @@
 button {
   border-radius: 4px;
   border: none;
-  box-shadow: 1px 2px 5px grey;
+
   text-align: center;
 }
 
@@ -32,7 +32,7 @@ button:focus {
   width: 100%;
   height: auto;
   box-shadow: none;
-  padding: 12px;
+
   text-align: center;
 }
 
