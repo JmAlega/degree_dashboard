@@ -60,7 +60,33 @@ module.exports = function(app, client) {
           res.status(401).json({error: 'Email not found!'});
         }
       })
-  })
+  });
+
+  // Desc   -> Deletes a schedule
+  // Params -> Schedule Id
+  // Body   -> none
+  // Result -> Schedule is deleted from database
+  app.delete('/api/deleteSchedule/:scheduleId', (req, res) => {
+    dbReports.collection("Schedules").findOne({'schedule_id':req.params.scheduleId})
+      .then(doc => {
+        if (doc != null) {
+          dbReports.collection("Schedules").deleteOne({_id:doc._id})
+            .then(doc => {
+              console.log("POST /api/deleteSchedule " + req.params.scheduleId);
+              res.send('Schedule Deleted');
+            })
+            .catch(err => {
+              res.status(500).send({error: err});
+            })
+        } else {
+          res.status(401).json({error: 'Schedule ID not found'});
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+      });
+  });
 };
 
 // Asynchronous function to load the schedules for front-end
