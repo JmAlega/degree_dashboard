@@ -30,7 +30,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+function SendData() {
+
+}
+
+export default function SignUp() {
   const classes = useStyles();
 
   return (
@@ -47,40 +51,61 @@ export default function Login() {
             margin="normal"
             required
             fullWidth
+            id="First Name"
+            label="First Name"
+            name="First Name"
+            autoComplete="First Name"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="Last Name"
+            label="Last Name"
+            name="Last Name"
+            autoComplete="Last Name"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             id="email"
             label="Email Address"
             name="email"
             autoComplete="email"
             autoFocus
           />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="password"
+            label="password"
+            name="password"
+            autoComplete="password"
+            autoFocus
+          />
+          <Link to='/activation'>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             className={classes.submit}
-            style={{backgroundColor: 'green', color: 'white'}}
+            style={{backgroundColor: 'green', color: 'white'}} 
           >
             SUBMIT
           </Button>
+          </Link>
           <h6>
-             <Link to='/login'> ALREADY HAVE AN ACCOUNT? CLICK HERE TO LOGIN </Link>
+            <center><Link to='/login'> ALREADY HAVE AN ACCOUNT? CLICK HERE TO LOGIN </Link> </center>
           </h6>
         </form>
       </div>
     </Container>
   );
 }
-
-// const SignUp = () => {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         SIGN UP HERE
-
-//         <Link to='/login'> ALREADY HAVE AN ACCOUNT? CLICK HERE TO LOGIN </Link>
-//       </header>
-//     </div>
-//   )
-// }
-
-// export default SignUp;

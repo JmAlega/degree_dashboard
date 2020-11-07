@@ -8,6 +8,7 @@ import CourseView from './Components/CourseView';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Index from './Components/Index';
+import Activation from './Components/Activation';
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
 
         <Route path='/login' component={Login} />
         <Route path='/sign-up' component={SignUp} />
-
+        <Route path='/activation' component={Activation} />
         {
         /* 
           Private Routes
