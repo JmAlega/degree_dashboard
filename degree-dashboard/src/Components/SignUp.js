@@ -108,6 +108,7 @@ export default function SignUp() {
             id="password"
             label="password"
             name="password"
+            type="password"
             autoComplete="password"
             onInput={e => setPassword(e.target.value)}
           />
@@ -130,7 +131,6 @@ export default function SignUp() {
             id="Last Name"
             label="Last Name"
             name="Last Name"
-            type="password"
             autoComplete="Last Name"
             onInput={e => setLastName(e.target.value)}
           />
