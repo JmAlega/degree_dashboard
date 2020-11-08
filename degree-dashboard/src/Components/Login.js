@@ -86,10 +86,10 @@ export default function Login() {
             required
             fullWidth
             id="password"
-            label="password"
-            name="password"
+            label="Password"
+            name="Password"
+            type="password"
             autoComplete="password"
-            autoFocus
             onInput={e => setPassword(e.target.value)}
           />
           <Button
