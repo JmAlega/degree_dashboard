@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import miner from './images/miner.png';
-
+import { useHistory } from 'react-router-dom';
+const axios = require('axios');
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,7 +36,26 @@ function Validate() {
 
 export default function Activation() {
   const classes = useStyles();
+  const history = useHistory();
+  const[code, setCode] = useState('');
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios.post('http://localhost:8000/api/loginUser',{
+      code: code,
+    })
+    .then((res) =>{
+      if (res.status === 200) {
+        console.log('User Activated Successfully');
+        history.push('/')
+      } else {
+        console.log(res.error);
+      }
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -44,7 +64,7 @@ export default function Activation() {
         <Typography component="h1" variant="h5" >
           Enter Activation Code
         </Typography>
-        <form className={classes.form} noValidate > 
+        <form className={classes.form} noValidate onSubmit={handleSubmit} > 
           <TextField
             variant="outlined"
             margin="normal"
@@ -55,8 +75,8 @@ export default function Activation() {
             name="activation"
             autoComplete="activation"
             autoFocus
+            onInput={e => setCode(e.target.value)}
           />
-          <Link to='/login'>
           <Button
             type="submit"
             fullWidth
@@ -66,7 +86,6 @@ export default function Activation() {
           >
             SUBMIT
           </Button>
-          </Link>
         </form>
       </div>
     </Container>

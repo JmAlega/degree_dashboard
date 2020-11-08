@@ -1,5 +1,5 @@
 // THIS COMPONENT IS JUST A PLACEHOLDER! PUT THE ACTUAL LOGIN COMPONENT HERE
-import React from 'react';
+import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import miner from './images/miner.png';
 import { Link } from 'react-router-dom';
+const axios = require('axios');
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -30,13 +31,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Validate() {
-
-}
 
 export default function Login() {
   const classes = useStyles();
+  const history = useHistory();
+  const[email, setEmail] = useState('');
+  const[password, setPassword] = useState('');
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios.post('http://localhost:8000/api/loginUser',{
+      email: email,
+      password: password,
+    })
+    .then((res) =>{
+      if (res.status === 200) {
+        console.log('User Logged In Successfully');
+        history.push("/")
+      } else {
+        console.log(res.error);
+        if(res.error === 'Email Not Found'){
+          history.push("/activation")
+        }
+      }
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -45,7 +67,7 @@ export default function Login() {
         <Typography component="h1" variant="h5" >
           Login
         </Typography>
-        <form className={classes.form} noValidate > 
+        <form className={classes.form} noValidate onSubmit={handleSubmit}> 
           <TextField
             variant="outlined"
             margin="normal"
@@ -56,6 +78,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            onInput={e => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -67,8 +90,8 @@ export default function Login() {
             name="password"
             autoComplete="password"
             autoFocus
+            onInput={e => setPassword(e.target.value)}
           />
-          <Link to='/sign-up'>
           <Button
             type="submit"
             fullWidth
@@ -78,7 +101,6 @@ export default function Login() {
           >
             SUBMIT
           </Button>
-          </Link>
           <h6>
             <center><Link to='/sign-up'> DON'T HAVE AN ACCOUNT? CLICK HERE TO SIGN UP </Link></center>
           </h6>

@@ -7,7 +7,9 @@ import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Index from './Components/Index';
 import Activation from './Components/Activation';
-
+import CourseView from './Components/courseView/CourseView.js'
+import UploadDegree from './Components/uploadDegree/UploadDegree.js'
+import UploadAudit from './Components/uploadDegree/UploadAudit.js'
 
 function App() {
   if (sessionStorage.getItem('loggedIn') == null) {
