@@ -156,6 +156,7 @@ module.exports = function(app, client, nodemailer) {
           });
         } else {
           console.log('User does not exist');
+          res.status(404).json({error: 'User not found'});
         }
       })
       .catch(err => {
