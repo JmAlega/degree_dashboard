@@ -16,7 +16,7 @@ function UploadAudit () {
           <DropZone/>
 
           <div className={styles.progress}>
-            <LinearDeterminate/>
+            {/* <LinearDeterminate/> */}
           </div>
           
         </div>
