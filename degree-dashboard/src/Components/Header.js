@@ -63,14 +63,14 @@ const Header = ({component: Component, ...rest }) => {
 
     // These functions load the correct route when the button in the header is pressed.
     const dash = () => {
-      console.log(history.location);
+      //console.log(history.location);
       history.push('dashboard');
     }
     const schedule = () => {
       history.push('schedule');
     }
     const courseview = () => {
-      console.log(history.location);
+      //console.log(history.location);
       history.push('course-view');
     }
     const courses= () => {
@@ -83,9 +83,9 @@ const Header = ({component: Component, ...rest }) => {
     // getVariant is used for styling the button of the page the user is currently on. As of now,
     //   the button gets outlined if it is selected
     function getVariant(btnType) {
-      console.log(history.location.pathname)
+      //console.log(history.location.pathname)
       if (history.location.pathname === btnType) {
-        console.log("YES")
+        //console.log("YES")
         return "outlined";
       }
       return "default";
@@ -94,9 +94,9 @@ const Header = ({component: Component, ...rest }) => {
     // getColor is used for styling the button of the page the user is currently on. As of now,
     //   the button gets colored to the secondary color in the color scheme.
     function getColor(btnType) {
-      console.log(history.location.pathname)
+      //console.log(history.location.pathname)
       if (history.location.pathname === btnType) {
-        console.log("YES")
+        //console.log("YES")
         return "secondary";
       }
       return "primary";
