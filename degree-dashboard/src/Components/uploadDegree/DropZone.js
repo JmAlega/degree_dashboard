@@ -42,15 +42,13 @@ function DropZone() {
     });
   }
 
-  
-
   const {getRootProps, getInputProps} = useDropzone({uploadFile})
 
   return (
-    <div onSubmit={handleSubmit}>
+    <div onChange={uploadFile}>
       <div {...getRootProps()} className={styles.dropArea}>
-        <input {...getInputProps()} id="audit" type="file" onChange={uploadFile} />
-        <h2 className={styles.dropText}>DRAG FILE HERE OR <span className={styles.browse}>BROWSE</span></h2>
+        <input {...getInputProps()} id="audit"  />
+        <h2 className={styles.dropText}>CLICK HERE TO <span className={styles.browse}>BROWSE</span></h2>
       </div>
       <div className={styles.fileName}>{fileName}</div>
       <div className={styles.progress}>
