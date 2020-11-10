@@ -7,27 +7,31 @@ function DropZone() {
   
   const uploadFile = ({target: {files} }) => {
     var data = new FormData();
-    // data.append( 'audit', files[0])
-
     var file = document.getElementById("audit").files[0];
+    data.append('email' , "userEmail@umsystm.edu");
+    data.append('audit', file)
+    handleSubmit(data);
 
-    if (file) {
-        var reader = new FileReader();
-        reader.readAsText(file, "UTF-8");
-        reader.onload = function (evt) {
-            document.getElementById("audit").innerHTML = evt.target.result;
-            console.log(reader.result)
+    
+
+    // if (file) {
+    //     var reader = new FileReader();
+    //     reader.readAsText(file, "UTF-8");
+    //     reader.onload = function (evt) {
+    //         document.getElementById("audit").innerHTML = evt.target.result;
+            
+    //         // data.append('audit', reader.result);
+            
+    //         // console.log(reader.result)
 
             
-        }
-        reader.onerror = function (evt) {
-            document.getElementById("audit").innerHTML = "error reading file";
-        }
-    }
-    // console.log(file);
-    data.append('email' , "av4k2@umsystem.edu");
-    data.append('audit', reader.result);
-    handleSubmit(data);
+    //     }
+    //     reader.onerror = function (evt) {
+    //         document.getElementById("audit").innerHTML = "error reading file";
+    //     }
+    // }
+    // // console.log(file);
+    
   }
 
   const [percent, setPercent] = useState(0);
@@ -39,11 +43,12 @@ function DropZone() {
   }
 
   const handleSubmit = (data) => {
-    // degree_audit.preventDefault()
+    // data.preventDefault()
     axios.post('http://localhost:8000/api/uploadAudit', data)
     .then((res) => {
       if (res.status == 200) {
         console.log('Upload Successful');
+        console.log(res.data)
       } else {
         console.log(res.error);
       }
