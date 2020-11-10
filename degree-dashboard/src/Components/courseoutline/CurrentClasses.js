@@ -14,29 +14,19 @@ import CloseIcon from '@material-ui/icons/Close';
 import Box from '@material-ui/core/Box';
 
 
+
   const useStyles = makeStyles((theme) => ({
   root: {
-    width: 325,
+    width: 290,
 	height: 150,
   },
 
 }));
 
 function CurrentClasses ({semester, courses}) {
- 
-  var buttonDescriptions = new Array(5);
-  var i;
 
-  if(courses.length < 5)
-  {
-	for(i = courses.length; i < 5; i++)
-		buttonDescriptions[i] = <div>
-								Choose Courses
-								<br />
-								<br />
-								Click to view all options
-								</div>
-  }
+  var buttonDescriptions = new Array(6);
+  var i;
   
   const classes = useStyles();
 
@@ -66,7 +56,6 @@ function CurrentClasses ({semester, courses}) {
 	</Card>
 	</Box>)
 	}
-
     </div>
   )
 }

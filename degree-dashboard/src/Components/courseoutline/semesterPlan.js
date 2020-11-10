@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 function SemesterPlan (props) {
 
   const [schedule] = useState(props.schedule_array);
-  
   const classes = useStyles();
   
    return (

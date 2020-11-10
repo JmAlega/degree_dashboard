@@ -26,6 +26,7 @@ function App() {
 			{'title': 'MATH 1214', 'description': 'Calculus For Engineers I'},
 			{'title': 'ENGLISH 1120', 'description': 'Exposition And Argumentation'},
 			{'title': 'GEO 1120', 'description': 'Evolution Of The Earth'},
+			{'title': 'Add Course', 'description': ''},
 		  ]
         },
         { 
@@ -35,15 +36,16 @@ function App() {
 			{'title': 'CS 1570', 'description': 'Introduction To C++ Programming'},
 			{'title': 'CS 1580', 'description': 'Introduction To Programming Laboratory'},
 			{'title': 'MATH 1215', 'description': 'Calculus For Engineers II'},
+			{'title': 'Add Course', 'description': ''},
 		  ]
         },
 		{ 
           semester: 'Spring 2022',
-          courses: [ ]
+          courses: [ {'title': 'Add Course', 'description': ''},]
         },
 		{ 
           semester: 'Fall 2022',
-          courses: [ ]
+          courses: [ {'title': 'Add Course', 'description': ''},]
         }]
 
   
