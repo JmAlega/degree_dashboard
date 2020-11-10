@@ -1,54 +1,38 @@
-import React, {useState, useCallback} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useDropzone } from 'react-dropzone'
 import styles from "./UploadAudit.module.css"
+import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearDeterminate from './LinearDeterminate.js'
 const axios = require('axios');
 
 function DropZone() {
+
+  const [progress, showProgress] = useState(false);
+  const [finished, setfinished] = useState(false);
+
+  const [fileName, setFileName] = useState('');
   
   const uploadFile = ({target: {files} }) => {
     var data = new FormData();
     var file = document.getElementById("audit").files[0];
+    setFileName(file.name);
     data.append('email' , "userEmail@umsystm.edu");
     data.append('audit', file)
     handleSubmit(data);
-
-    
-
-    // if (file) {
-    //     var reader = new FileReader();
-    //     reader.readAsText(file, "UTF-8");
-    //     reader.onload = function (evt) {
-    //         document.getElementById("audit").innerHTML = evt.target.result;
-            
-    //         // data.append('audit', reader.result);
-            
-    //         // console.log(reader.result)
-
-            
-    //     }
-    //     reader.onerror = function (evt) {
-    //         document.getElementById("audit").innerHTML = "error reading file";
-    //     }
-    // }
-    // // console.log(file);
-    
-  }
-
-  const [percent, setPercent] = useState(0);
-
-  function OnUploadProgress (progressEvent) {
-    const{loaded, total} = progressEvent;
-    var percentCompleted = Math.round((loaded * 100) / total);
-    return percentCompleted;
   }
 
   const handleSubmit = (data) => {
-    // data.preventDefault()
-    axios.post('http://localhost:8000/api/uploadAudit', data)
+    axios.post('http://localhost:8000/api/uploadAudit', data, {
+      onUploadProgress: (progressEvent) => {
+        let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        console.log(`${percentCompleted}`);
+        showProgress(true);
+      }})
     .then((res) => {
       if (res.status == 200) {
-        console.log('Upload Successful');
         console.log(res.data)
+        setfinished(true);
+        showProgress(false);
       } else {
         console.log(res.error);
       }
@@ -58,22 +42,21 @@ function DropZone() {
     });
   }
 
-  const {getRootProps, getInputProps} = useDropzone({uploadFile})
+  
 
-  // var file_name = document.getElementById("audit").files[0].name;
-  // const audit = file_name => (
-  //   <div key={file_name}>
-  //     {file_name}
-  //   </div>
-  // );
+  const {getRootProps, getInputProps} = useDropzone({uploadFile})
 
   return (
     <div onSubmit={handleSubmit}>
       <div {...getRootProps()} className={styles.dropArea}>
-        <input {...getInputProps()} id="audit" onChange={uploadFile} />
+        <input {...getInputProps()} id="audit" type="file" onChange={uploadFile} />
         <h2 className={styles.dropText}>DRAG FILE HERE OR <span className={styles.browse}>BROWSE</span></h2>
       </div>
-      <div className={styles.fileName}>Test</div>
+      <div className={styles.fileName}>{fileName}</div>
+      <div className={styles.progress}>
+        {progress && <LinearProgress />}
+        {finished && <LinearDeterminate/>}
+      </div>
     </div>
     
   )

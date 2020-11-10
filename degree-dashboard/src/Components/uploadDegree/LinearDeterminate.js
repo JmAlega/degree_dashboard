@@ -8,14 +8,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LinearDeterminate(props) {
+export default function LinearDeterminate() {
   const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress(() => {
-        const diff = props.percent;
+        const diff = 100;
         return diff
       });
     }, 500);
