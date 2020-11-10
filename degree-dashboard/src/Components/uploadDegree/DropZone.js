@@ -1,37 +1,46 @@
 import React, {useState, useCallback} from 'react'
 import { useDropzone } from 'react-dropzone'
 import styles from "./UploadAudit.module.css"
-import Button from '@material-ui/core/Button';
 const axios = require('axios');
 
 function DropZone() {
-  const [degree_audit, setDegree_audit] = useState([])
-  const onDrop = useCallback((acceptedFiles) => {
-    acceptedFiles.forEach((file) => {
-      const reader = new FileReader()
+  
+  const uploadFile = ({target: {files} }) => {
+    var data = new FormData();
+    // data.append( 'audit', files[0])
 
-      reader.onload = () => {
-        const binaryStr = reader.result
-        console.log(binaryStr)
-      }
-      reader.readAsArrayBuffer(file)
-    })
-    
-  }, [])
+    var file = document.getElementById("audit").files[0];
 
-  const {getRootProps, getInputProps} = useDropzone({onDrop})
+    if (file) {
+        var reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        reader.onload = function (evt) {
+            document.getElementById("audit").innerHTML = evt.target.result;
+            console.log(reader.result)
 
-  const audit = degree_audit.map((file) => (
-    <div key={file.name}>
-      {file.name}
-    </div>
-  ))
+            
+        }
+        reader.onerror = function (evt) {
+            document.getElementById("audit").innerHTML = "error reading file";
+        }
+    }
+    // console.log(file);
+    data.append('email' , "av4k2@umsystem.edu");
+    data.append('audit', reader.result);
+    handleSubmit(data);
+  }
 
-  const handleSubmit = (degree_audit) => {
-    degree_audit.preventDefault()
-    axios.post('http://localhost:8000/api/uploadAudit', {
-      audit: degree_audit
-    })
+  const [percent, setPercent] = useState(0);
+
+  function OnUploadProgress (progressEvent) {
+    const{loaded, total} = progressEvent;
+    var percentCompleted = Math.round((loaded * 100) / total);
+    return percentCompleted;
+  }
+
+  const handleSubmit = (data) => {
+    // degree_audit.preventDefault()
+    axios.post('http://localhost:8000/api/uploadAudit', data)
     .then((res) => {
       if (res.status == 200) {
         console.log('Upload Successful');
@@ -44,16 +53,22 @@ function DropZone() {
     });
   }
 
+  const {getRootProps, getInputProps} = useDropzone({uploadFile})
+
+  // var file_name = document.getElementById("audit").files[0].name;
+  // const audit = file_name => (
+  //   <div key={file_name}>
+  //     {file_name}
+  //   </div>
+  // );
+
   return (
     <div onSubmit={handleSubmit}>
       <div {...getRootProps()} className={styles.dropArea}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} id="audit" onChange={uploadFile} />
         <h2 className={styles.dropText}>DRAG FILE HERE OR <span className={styles.browse}>BROWSE</span></h2>
       </div>
-      <div className={styles.fileName}>{audit}</div>
-      <Button variant="contained" type="submit" color="primary">
-        Submit
-      </Button>
+      <div className={styles.fileName}>Test</div>
     </div>
     
   )
