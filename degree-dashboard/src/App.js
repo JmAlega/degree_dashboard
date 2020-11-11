@@ -11,6 +11,7 @@ import CourseView from './Components/courseView/CourseView.js'
 import UploadDegree from './Components/uploadDegree/UploadDegree.js'
 import UploadAudit from './Components/uploadDegree/UploadAudit.js'
 import SemesterPlan from './Components/courseoutline/semesterPlan.js'
+import ChooseCourse from './Components/courseoutline/ChooseCourse';
 
 function App() {
   if (sessionStorage.getItem('loggedIn') == null) {
@@ -108,6 +109,9 @@ function App() {
           />}
         />
 
+
+    {/* Choose Course */}
+    <ProtectedRoute path='/choose-course' component={() => <ChooseCourse/>} />
 
       </Switch>
 
