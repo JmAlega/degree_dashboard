@@ -47,7 +47,8 @@ export default function Login() {
     .then((res) =>{
       if (res.status === 200) {
         console.log('User Logged In Successfully');
-        history.push("/")
+        sessionStorage.setItem('loggedIn', 'true')
+        history.push('/')
       } else {
         console.log(res.error);
         if(res.error === 'Email Not Found'){
@@ -86,10 +87,10 @@ export default function Login() {
             required
             fullWidth
             id="password"
-            label="password"
-            name="password"
+            label="Password"
+            name="Password"
+            type="password"
             autoComplete="password"
-            autoFocus
             onInput={e => setPassword(e.target.value)}
           />
           <Button

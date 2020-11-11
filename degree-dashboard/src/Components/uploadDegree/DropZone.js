@@ -1,40 +1,38 @@
-import React, {useState, useCallback} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useDropzone } from 'react-dropzone'
 import styles from "./UploadAudit.module.css"
-import Button from '@material-ui/core/Button';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearDeterminate from './LinearDeterminate.js'
 const axios = require('axios');
 
 function DropZone() {
-  const [degree_audit, setDegree_audit] = useState([])
-  const onDrop = useCallback((acceptedFiles) => {
-    acceptedFiles.forEach((file) => {
-      const reader = new FileReader()
 
-      reader.onload = () => {
-        const binaryStr = reader.result
-        console.log(binaryStr)
-      }
-      reader.readAsArrayBuffer(file)
-    })
-    
-  }, [])
+  const [progress, showProgress] = useState(false);
+  const [finished, setfinished] = useState(false);
 
-  const {getRootProps, getInputProps} = useDropzone({onDrop})
+  const [fileName, setFileName] = useState('');
+  
+  const uploadFile = ({target: {files} }) => {
+    var data = new FormData();
+    var file = document.getElementById("audit").files[0];
+    setFileName(file.name);
+    data.append('email' , "userEmail@umsystm.edu");
+    data.append('audit', file)
+    handleSubmit(data);
+  }
 
-  const audit = degree_audit.map((file) => (
-    <div key={file.name}>
-      {file.name}
-    </div>
-  ))
-
-  const handleSubmit = (degree_audit) => {
-    degree_audit.preventDefault()
-    axios.post('http://localhost:8000/api/uploadAudit', {
-      audit: degree_audit
-    })
+  const handleSubmit = (data) => {
+    axios.post('http://localhost:8000/api/uploadAudit', data, {
+      onUploadProgress: (progressEvent) => {
+        let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        console.log(`${percentCompleted}`);
+        showProgress(true);
+      }})
     .then((res) => {
       if (res.status == 200) {
-        console.log('Upload Successful');
+        console.log(res.data)
+        setfinished(true);
+        showProgress(false);
       } else {
         console.log(res.error);
       }
@@ -44,16 +42,19 @@ function DropZone() {
     });
   }
 
+  const {getRootProps, getInputProps} = useDropzone({uploadFile})
+
   return (
-    <div onSubmit={handleSubmit}>
+    <div onChange={uploadFile}>
       <div {...getRootProps()} className={styles.dropArea}>
-        <input {...getInputProps()} />
-        <h2 className={styles.dropText}>DRAG FILE HERE OR <span className={styles.browse}>BROWSE</span></h2>
+        <input {...getInputProps()} id="audit"  />
+        <h2 className={styles.dropText}>CLICK HERE TO <span className={styles.browse}>BROWSE</span></h2>
       </div>
-      <div className={styles.fileName}>{audit}</div>
-      <Button variant="contained" type="submit" color="primary">
-        Submit
-      </Button>
+      <div className={styles.fileName}>{fileName}</div>
+      <div className={styles.progress}>
+        {progress && <LinearProgress />}
+        {finished && <LinearDeterminate/>}
+      </div>
     </div>
     
   )

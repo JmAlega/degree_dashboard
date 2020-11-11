@@ -16,11 +16,12 @@ const useStyles = makeStyles({
     position: "relative",
     height: "85vh",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   
   upload: {
     width: "200px",
+    textDecoration: "none",
     height: "45px",
     marginBottom: "30px",
     textAlign: "center",
@@ -76,7 +77,7 @@ function UploadDegree () {
     <div>
       <Header />
       <div className={styleClasses.uploadPage}>
-        <Link to='/upload-audit-first-time'>
+        <Link to='/upload-audit'>
           <Button className={styleClasses.upload}>Upload Audit</Button>
         </Link>
 

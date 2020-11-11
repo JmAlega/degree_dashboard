@@ -108,8 +108,8 @@ export default function SignUp() {
             id="password"
             label="password"
             name="password"
+            type="password"
             autoComplete="password"
-            autoFocus
             onInput={e => setPassword(e.target.value)}
           />
           <TextField
@@ -121,7 +121,6 @@ export default function SignUp() {
             label="First Name"
             name="First Name"
             autoComplete="First Name"
-            autoFocus
             onInput={e => setFirstName(e.target.value)}
           />
           <TextField
@@ -133,7 +132,6 @@ export default function SignUp() {
             label="Last Name"
             name="Last Name"
             autoComplete="Last Name"
-            autoFocus
             onInput={e => setLastName(e.target.value)}
           />
           <Button
