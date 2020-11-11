@@ -17,8 +17,10 @@ import Box from '@material-ui/core/Box';
 
   const useStyles = makeStyles((theme) => ({
   root: {
-    width: 290,
-	height: 150,
+    width: 175,
+    height: 125,
+    boxShadow: "1px 2px 5px grey",
+    margin: "5px"
   },
 
 }));
@@ -31,31 +33,27 @@ function CurrentClasses ({semester, courses}) {
   const classes = useStyles();
 
   return (
-    <div style={{
-		display: 'flex',
-		alignItems: 'center'
-	}}>
-
-
-	{courses.map(course => 
-	<Box paddingRight={2} paddingBottom={2}>
-	<Card className={classes.root}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <CloseIcon />
-          </IconButton>
-        }
-        title={course.title}
-      />
-	  <CardContent>
-        <Typography variant="body2" color="textSecondary">
-		{course.description}
-        </Typography>
-      </CardContent>
-	</Card>
-	</Box>)
-	}
+    <div style={{display: "flex", flexDirection: "row"}}>
+      {courses.map(course => 
+        <Box paddingRight={2} paddingBottom={2}>
+          <Card className={classes.root}>
+            <CardHeader
+              action={
+                course.title !== "Add Course" && 
+                <IconButton aria-label="settings">
+                  <CloseIcon />
+                </IconButton>
+              }
+              title={course.title}
+              titleTypographyProps={{variant: "body1"}}
+              style={{ paddingBottom: "0px"}}
+              />
+            <CardContent style={{paddingBottom: "0px", paddingTop: "0px"}}>
+              <Typography variant="caption" color="textSecondary">{course.description}</Typography>
+            </CardContent>
+          </Card>
+        </Box>
+      )}
     </div>
   )
 }

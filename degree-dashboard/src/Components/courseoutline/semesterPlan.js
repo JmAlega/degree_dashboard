@@ -30,49 +30,45 @@ function SemesterPlan (props) {
   const classes = useStyles();
   
    return (
-   <div>
-   <Header></Header>
-   <div className="semesterViewPg">
-   <Container maxWidth="sm" align="center">
-   <Typography variant="h5">
-	Tentative Course Outline
-	<br />
-	Note: This is not a guarantee of any enrollment
-   </Typography>
-   </Container>
-	   
-    <div className="sections">
-
-
-	<div className="addSem">
-	<Button variant="contained" endIcon={<AddIcon/>}>{"Add Semester"}</Button>
-	</div>
-
-        {schedule.map(available_classes => (
-		<Box paddingTop={2} paddingBottom={2}>
-		<Accordion defaultExpanded="True">
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-		<Typography variant="h5">{available_classes.semester}</Typography>
-        </AccordionSummary>
-		<AccordionDetails overflow="auto">
-          <Box overflow='auto'>
-            <CurrentClasses courses={available_classes.courses} semester={available_classes.semester}/>
-          </Box>
-        </AccordionDetails>
-      </Accordion>
-	  </Box>
-        ))}
-
+    <div>
+      <Header></Header>
+      <div className="semesterViewPg" style={{margin: "20px"}}>
+        <Container maxWidth="sm" align="center">
+          <Typography variant="h5">
+            Tentative Course Outline
+            <br />
+            Note: This is not a guarantee of any enrollment
+          </Typography>
+        </Container>
+        
+        <div className="sections">
+          <div className="addSem">
+            <Button variant="contained" endIcon={<AddIcon/>}>{"Add Semester"}</Button>
+          </div>
+          {schedule.map(available_classes => (
+            <Box paddingTop={2} paddingBottom={2} style={{width: "80%"}}>
+              <Accordion defaultExpanded="True" style={{ boxShadow: "1px 2px 5px grey" }}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                <Typography variant="h5" style={{marginLeft: "5px"}}>{available_classes.semester}</Typography>
+                </AccordionSummary>
+                <AccordionDetails overflow="auto">
+                  <Box overflow='auto'>
+                    <CurrentClasses 
+                      courses={available_classes.courses}
+                      semester={available_classes.semester}
+                    />
+                  </Box>
+                </AccordionDetails>
+              </Accordion>
+            </Box>
+          ))}
+        </div>
+      </div>
     </div>
-    </div>
-	</div>
-  )
-  
-
-  
+  )  
 }
 export default SemesterPlan;
