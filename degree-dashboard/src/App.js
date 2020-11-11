@@ -109,7 +109,7 @@ function App() {
 
 
     {/* Choose Course */}
-    <ProtectedRoute path='/courseoutline' component={() => <ChooseCourse/>} />
+    <ProtectedRoute path='/choose-course' component={() => <ChooseCourse/>} />
 
       </Switch>
 
