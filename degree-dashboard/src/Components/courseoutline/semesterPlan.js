@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import AddIcon from '@material-ui/icons/Add';
 import Header from '../Header.js';
+import Requirements from '../Requirements';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,27 +46,34 @@ function SemesterPlan (props) {
           <div className="addSem">
             <Button variant="contained" endIcon={<AddIcon/>}>{"Add Semester"}</Button>
           </div>
-          {schedule.map(available_classes => (
-            <Box paddingTop={2} paddingBottom={2} style={{width: "80%"}}>
-              <Accordion defaultExpanded="True" style={{ boxShadow: "1px 2px 5px grey" }}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                <Typography variant="h5" style={{marginLeft: "5px"}}>{available_classes.semester}</Typography>
-                </AccordionSummary>
-                <AccordionDetails overflow="auto">
-                  <Box overflow='auto'>
-                    <CurrentClasses 
-                      courses={available_classes.courses}
-                      semester={available_classes.semester}
-                    />
-                  </Box>
-                </AccordionDetails>
-              </Accordion>
+          <div style={{display: "flex", flexDirection: "row"}}>
+            <div style={{display: "flex", flexDirection: "column", width: "60%"}}>
+              {schedule.map(available_classes => (
+                <Box paddingTop={2} paddingBottom={2}>
+                  <Accordion defaultExpanded="True" style={{ boxShadow: "1px 2px 5px grey" }}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                    <Typography variant="h5" style={{marginLeft: "5px"}}>{available_classes.semester}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails overflow="auto">
+                      <Box overflow='auto'>
+                        <CurrentClasses 
+                          courses={available_classes.courses}
+                          semester={available_classes.semester}
+                        />
+                      </Box>
+                    </AccordionDetails>
+                  </Accordion>
+                </Box>
+              ))}
+            </div>
+            <Box style={{width: "40%", position: "relative", marginLeft: "30px", marginTop: "16px"}} >
+              <Requirements/>
             </Box>
-          ))}
+          </div>
         </div>
       </div>
     </div>

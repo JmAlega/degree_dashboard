@@ -11,11 +11,11 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   greyBackground: {
-    backgroundColor: "rgba(243,243,243,1)"
+    backgroundColor: "rgba(243,243,243,1)",
+    borderRadius: "4px"
   },
   boldText: {
-    fontWeight: "bold",
-    width: "90%"
+    fontWeight: "bold"
   },
   strikeThrough: {
     textDecorationLine: 'line-through'
@@ -47,7 +47,6 @@ const Accordion = withStyles({
     boxShadow: "none",
     border: 0,
     "&:not(:last-child)": {
-      /*borderBottom: 0,*/
     },
     "&:before": {
       display: "none"
@@ -63,7 +62,7 @@ const AccordionSummary = withStyles({
   root: {
     backgroundColor: "rgba(243,243,243,1)",
     marginBottom: -1,
-    marginLeft: -25,
+    // marginLeft: -25,
     minHeight: 40,
     position: "relative",
     "&$expanded": {
@@ -94,17 +93,18 @@ export default function Requirements() {
   const styles=useStyles();
   return (
     <div className={ styles.greyBackground }>
-      <Typography variant="h6" className={ styles.boldText }>Requirements</Typography>
+      <Typography variant="h6" className={ styles.boldText } style={{paddingLeft: "16px", paddingTop: "8px"}}>Requirements</Typography>
       {
         // loop through each requirement in the audit
         audit.requirements.map((requirement) => {
           return <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
+              style={{padding: "0px"}}
             >
               {/* requirement title */}
-              <Typography className={ styles.boldText }>{ requirement.title }</Typography>
-              <div style={{ width: "10%" }}>
+              <Typography variant="body2" className={ styles.boldText } style={{width: "75%",}}>{ requirement.title }</Typography>
+              <div style={{ width: "20%", paddingLeft: "20px" }}>
               {
                 requirement.subGroups.length > 0 &&
                 requirement.subGroups.map((subgroup) => {
@@ -130,20 +130,20 @@ export default function Requirements() {
                       requirement.subGroups.map((subgroup) => {
                         return <>
                         {/* display sub-requirement title */}
-                        <Typography className={ styles.boldText }>{ subgroup.subGroupTitle }</Typography>
+                        <Typography variant="caption" className={ styles.boldText }>{ subgroup.subGroupTitle }</Typography>
                         <ul className ={ styles.listStyle }>
                         {
                           /* if there are sub-requirements courses to select from, loop through each course and display */
                           subgroup.selectFrom &&
                           subgroup.selectFrom.map((selectCourse) => {
-                            return <li><Typography>{ selectCourse.dept + " " + selectCourse.number }</Typography></li>
+                            return <li><Typography variant="caption">{ selectCourse.dept + " " + selectCourse.number }</Typography></li>
                           }) 
                         }
                         {
                           /* if there are sub-requirements courses that have been fulfilled, loop through each course and strike it through */
                           subgroup.takenCourses &&
                           subgroup.takenCourses.map((completedCourse) => {
-                            return <li><Typography className={ styles.strikeThrough }>{ completedCourse.courseNumber }</Typography></li>
+                            return <li><Typography variant="caption" className={ styles.strikeThrough }>{ completedCourse.courseNumber }</Typography></li>
                           }) 
                         }
                         </ul>
@@ -152,20 +152,20 @@ export default function Requirements() {
                           subgroup.alternative.length > 0 &&
                           subgroup.alternative.map((alt) => {
                             return <>
-                            <Typography className={ styles.boldText }>{ alt.subGroupTitle }</Typography>
+                            <Typography variant="caption" className={ styles.boldText }>{ alt.subGroupTitle }</Typography>
                             <ul className ={ styles.listStyle }>
                             {
                               /* if there are sub-requirement alternative courses to select from, loop through each course and display */
                               alt.selectFrom &&
                               alt.selectFrom.map((selectCourse) => {
-                                return <li><Typography>{ selectCourse.dept + " " + selectCourse.number }</Typography></li>
+                                return <li><Typography variant="caption">{ selectCourse.dept + " " + selectCourse.number }</Typography></li>
                               })
                             }
                             {
                               /* if there are sub-requirement alternative courses that have been fulfilled, loop through each course and strike it through */
                               alt.takenCourses &&
                               alt.takenCourses.map((completedCourse) => {
-                                return <li><Typography className={ styles.strikeThrough }>{ completedCourse.courseNumber }</Typography></li>
+                                return <li><Typography variant="caption" className={ styles.strikeThrough }>{ completedCourse.courseNumber }</Typography></li>
                               })
                             }
                             </ul>
@@ -178,13 +178,16 @@ export default function Requirements() {
                     </ul>
                   /* if there are no subgroups, display total hours earned for requirement */
                   : <ul className ={ styles.listStyle }>
-                      <Typography>{ "Total Hours Earned: " + requirement.totalHoursEarned + " Hours" }</Typography>
+                      <Typography variant="caption">{ "Total Hours Earned: " + requirement.totalHoursEarned + " Hours" }</Typography>
                     </ul>
               }
             </AccordionDetails>
           </Accordion>
         })
       }
+    </div>
+  );
+}
       {/*<Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -341,6 +344,3 @@ export default function Requirements() {
           </ul>
         </AccordionDetails>
       </Accordion>*/}
-    </div>
-  );
-}
