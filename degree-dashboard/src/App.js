@@ -24,7 +24,7 @@ function App() {
       courses: [
         {'title': 'CHEM 110', 'description': 'Intro/Lab Safety&Haz Mtr'},
         {'title': 'COMP SCI 1010', 'description': 'Intro / Computer Science'},
-        {'title': 'COMP SCIE 1570', 'description': 'Intro To Programming'},
+        {'title': 'COMP SCI 1570', 'description': 'Intro To Programming'},
         {'title': 'COMP SCI 1580', 'description': 'Intro To Programming Lab'},
         {'title': 'ECON 1200', 'description': 'Prin Of Macroeconomics'},
         {'title': 'HISTORY 1200', 'description': 'Mod Western Civilization'},

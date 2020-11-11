@@ -52,6 +52,7 @@ function CourseView (props) {
   const styleClasses = useStyles();
   const [subjectId, setSubjectId] = useState('');
   const [courseNum, setCourseNum] = useState('');
+  const [prereq, setPreReq] = useState('');
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
 
@@ -59,10 +60,15 @@ function CourseView (props) {
     axios.get("http://localhost:8000/api/getCourse/"+props.subject+"/"+props.number)
     .then(res => {
       console.log(res);
+      const preReqString = "prerequisites: ";
+      const preReqIndex = res.data.description.toLowerCase().indexOf(preReqString);
+      const description = res.data.description.substring(0, preReqIndex);
+      const preReq = res.data.description.substring(preReqIndex + preReqString.length);
       setTitle(res.data.title);
-      setDesc(res.data.description);
+      setDesc(description);
       setSubjectId(res.data.subjectId);
       setCourseNum(res.data.number);
+      setPreReq(preReq)
     })
     .catch(error => {
       console.log(error);
@@ -79,7 +85,7 @@ function CourseView (props) {
           <Paper className={styleClasses.classInfo}>
 
             <CourseInfo desc={desc} 
-                        pre={"Preqruisite #1"}
+                        pre={prereq}
                         reqFor={"Required For #1"}
                         req={"Required True #1"}
                         

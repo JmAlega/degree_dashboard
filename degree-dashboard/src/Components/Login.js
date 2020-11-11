@@ -48,7 +48,7 @@ export default function Login() {
       if (res.status === 200) {
         console.log('User Logged In Successfully');
         sessionStorage.setItem('loggedIn', 'true')
-        history.push('/')
+        history.push('/upload-audit')
       } else {
         console.log(res.error);
         if(res.error === 'Email Not Found'){
@@ -58,6 +58,7 @@ export default function Login() {
     })
     .catch(err=>{
       console.log(err);
+      alert("Incorrect email or password. Please try again.");
     });
   }
   return (
