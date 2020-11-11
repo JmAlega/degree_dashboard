@@ -1,20 +1,25 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import Typography from '@material-ui/core/Typography';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import CourseCategory from './choosecoursemodal/CourseCategory';
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Divider from '@material-ui/core/Divider';
-
-
+const sampleData = [
+    {"Humanities": [
+        {"number": "ENGLISH 1120", "title": "Exposition and Argumentation"}, 
+        {"number": "ENGLISH 1160", "title": "Writing and Research"},
+        {"number": "ENGLISH 1211", "title": "British Literature I"}
+    ]},
+    {"Comp Sci": [
+        {"number": "Comp Sci 1570", "title": "Intro to Programming C++"}, 
+        {"number": "Comp Sci 1580", "title": "Intro to Programming C++ Lab"}
+    ]},
+    {"Math": [
+        {"number": "Math 5107", "title": "Combinatorics and Graph Theory"}, 
+        {"number": "Math 4211", "title": "Advanced Calculus I"}
+    ]},
+]
 
 function ChooseCourse() {
   const [open, setOpen] = React.useState(false);
@@ -25,12 +30,6 @@ function ChooseCourse() {
   const handleClose = () => {
     setOpen(false);
   };
-  
-  const [openArrow, setOpenArrow] = React.useState(false);
-  const handleClick = () => {
-    setOpenArrow(!openArrow);
-  };
-
 
   return (
     <div>
@@ -38,83 +37,19 @@ function ChooseCourse() {
             Choose Courses    
         </Button>
         <Dialog 
-        onClose={handleClose} 
-        aria-labelledby="customized-dialog-title" 
-        open={open}   
-        fullWidth={true}
-        maxWidth={'md'}
+            onClose={handleClose} 
+            aria-labelledby="customized-dialog-title" 
+            open={open}   
+            fullWidth={true}
+            maxWidth={'md'}
         >
             <DialogTitle id="customized-dialog-title">{"Spring 2022"}</DialogTitle>
-
             <DialogContent dividers>
-                <List >
-                    <ListItem button onClick={handleClick}>
-                    <ListItemText primary="Humanities" />
-                            {openArrow ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                    <Collapse in={openArrow} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem>
-                        <Button variant="outlined">
-                            <Typography component="div">
-                                FR ENG 1100
-                            </Typography>
-                        </Button>
-                        </ListItem>
-                    </List>
-                    </Collapse>
-                </List>
-            
-             <Divider variant= "middle" style={{ backgroundColor: 'light gray'}}/>
-
-            <List>
-                    <ListItem button onClick={handleClick}>
-                    <ListItemText primary="Computer Science" />
-                            {openArrow ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                    <Collapse in={openArrow} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem>
-                        <Button variant="outlined">
-                            <Typography component="div">
-                                CS 4096
-                            </Typography>
-                        </Button>
-                        </ListItem>
-                    </List>
-                    </Collapse>
-                </List>
-
-                <Divider variant= "middle" style={{ backgroundColor: 'light gray'}}/>
-
-                <List>
-                    <ListItem button onClick={handleClick}>
-                    <ListItemText primary="Math" />
-                            {openArrow ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                    <Collapse in={openArrow} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem>
-                        <Button variant="outlined">
-                            <Typography component="div">
-                                MATH 5107
-                            </Typography>
-                        </Button>
-                        </ListItem>
-                    </List>
-                    </Collapse>
-                </List>
-
+                {sampleData.map (category => <CourseCategory category={category}/>) }
             </DialogContent>
-
-            <DialogActions>
-                <Button autoFocus onClick={handleClose} color="primary">
-                Save
-                </Button>
-            </DialogActions>
         </Dialog>
     </div>
   );
 }
 
-export default ChooseCourse
+export default ChooseCourse;
