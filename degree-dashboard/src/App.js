@@ -6,15 +6,47 @@ import Dashboard from './Components/Dashboard';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import Index from './Components/Index';
+import Activation from './Components/Activation';
 import CourseView from './Components/courseView/CourseView.js'
 import UploadDegree from './Components/uploadDegree/UploadDegree.js'
 import UploadAudit from './Components/uploadDegree/UploadAudit.js'
-
+import SemesterPlan from './Components/courseoutline/semesterPlan.js'
 
 function App() {
   if (sessionStorage.getItem('loggedIn') == null) {
     sessionStorage.setItem('loggedIn', 'false');
   }
+
+	const schedule = [
+        { 
+		  semester: 'Spring 2021',
+          courses: [ 
+        {'title': 'FR ENG 1100', 'description': 'Study And Careers in Engineering and Computing'},
+			{'title': 'CS 1500', 'description': 'Computational Problem Solving'},
+			{'title': 'MATH 1214', 'description': 'Calculus For Engineers I'},
+			{'title': 'ENGLISH 1120', 'description': 'Exposition And Argumentation'},
+			{'title': 'GEO 1120', 'description': 'Evolution Of The Earth'},
+			{'title': 'Add Course', 'description': ''},
+		  ]
+        },
+        { 
+          semester: 'Fall 2021',
+          courses: [ 
+        {'title': 'CS 1200', 'description': 'Discrete Mathematics for Computer Science'},
+			{'title': 'CS 1570', 'description': 'Introduction To C++ Programming'},
+			{'title': 'CS 1580', 'description': 'Introduction To Programming Laboratory'},
+			{'title': 'MATH 1215', 'description': 'Calculus For Engineers II'},
+			{'title': 'Add Course', 'description': ''},
+		  ]
+        },
+		{ 
+          semester: 'Spring 2022',
+          courses: [ {'title': 'Add Course', 'description': ''},]
+        },
+		{ 
+          semester: 'Fall 2022',
+          courses: [ {'title': 'Add Course', 'description': ''},]
+        }]
 
   
   return (
@@ -28,7 +60,7 @@ function App() {
 
         <Route path='/login' component={Login} />
         <Route path='/sign-up' component={SignUp} />
-
+        <Route path='/activation' component={Activation} />
         {
         /* 
           Private Routes
@@ -69,6 +101,11 @@ function App() {
               ]} 
             />}
           />
+		
+        <ProtectedRoute path='/courseoutline' component={() => <SemesterPlan
+												schedule_array={schedule}
+                      />}
+                    />
 
 
       </Switch>
