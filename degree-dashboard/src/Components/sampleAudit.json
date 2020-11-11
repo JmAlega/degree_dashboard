@@ -1,0 +1,908 @@
+{
+  "requirements": [
+      {
+          "title": "COMMUNICATION COMPONENT",
+          "status": "status statusNO",
+          "totalSubGroupsNeeded": 2,
+          "totalSubGroupsEarned": 1,
+          "totalHoursNeeded": null,
+          "totalHoursEarned": 12,
+          "subGroups": [
+              {
+                  "subGroupTitle": "ONE COMMUNICATION INTENSIVE COURSE REQUIRED IN THESTUDENTS MAJOR",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "1",
+                  "alternative": [
+                      {
+                          "subGroupTitle": "TWO COMMUNICATION EMPHASIZED COURSES REQUIRED IN THESTUDENTS MAJOR",
+                          "subGroupStatus": "status Status_NO",
+                          "subGroupTotal": "2",
+                          "alternative": [],
+                          "subGroupReqType": "COURSE",
+                          "notFrom": [],
+                          "selectFrom": [
+                              {
+                                  "dept": "MATH",
+                                  "number": "5105"
+                              },
+                              {
+                                  "dept": "MATH",
+                                  "number": "5106"
+                              },
+                              {
+                                  "dept": "MATH",
+                                  "number": "5108"
+                              },
+                              {
+                                  "dept": "MATH",
+                                  "number": "4209"
+                              },
+                              {
+                                  "dept": "MATH",
+                                  "number": "4211"
+                              },
+                              {
+                                  "dept": "STAT",
+                                  "number": "5644"
+                              }
+                          ],
+                          "takenCourses": [
+                              {
+                                  "term": "FS20",
+                                  "courseNumber": "STAT    3113",
+                                  "courseName": "",
+                                  "status": "completed"
+                              }
+                          ],
+                          "subGroupEarned": 1
+                      }
+                  ],
+                  "subGroupReqType": "COURSE",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "MATH",
+                          "number": "3109"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5603"
+                      }
+                  ]
+              },
+              {
+                  "subGroupTitle": "ONE COMMUNICATION INTENSIVE COURSE IN OR OUT OF THESTUDENTS MAJOR",
+                  "subGroupStatus": "status Status_OK",
+                  "subGroupTotal": "1",
+                  "alternative": [
+                      {
+                          "subGroupTitle": "TWO COMMUNICATION EMPHASIZED COURSES IN OR OUT OF THESTUDENTS MAJOR",
+                          "subGroupStatus": "status Status_IP",
+                          "subGroupTotal": "2",
+                          "alternative": [],
+                          "takenCourses": [
+                              {
+                                  "term": "FS18",
+                                  "courseNumber": "COMP SCI2500",
+                                  "courseName": "",
+                                  "status": "completed"
+                              },
+                              {
+                                  "term": "FS20",
+                                  "courseNumber": "COMP SCI4096",
+                                  "courseName": "",
+                                  "status": "completed"
+                              }
+                          ],
+                          "subGroupEarned": 2
+                      }
+                  ],
+                  "takenCourses": [
+                      {
+                          "term": "SP18",
+                          "courseNumber": "ENGLISH 1160",
+                          "courseName": "",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              }
+          ]
+      },
+      {
+          "title": "CHECK FOR 6 HRS OF ROTC COURSE WORK",
+          "status": "status statusOK",
+          "totalSubGroupsNeeded": 1,
+          "totalSubGroupsEarned": 1,
+          "totalHoursNeeded": 0,
+          "totalHoursEarned": 0,
+          "subGroups": []
+      },
+      {
+          "title": "MINIMUM OF 128 HRS REQUIRED  (ADDITIONAL HOURS MAY BENEEDED TO SATISFY ALL REQUIREMENTS BELOW)",
+          "status": "status statusNO",
+          "totalSubGroupsNeeded": 0,
+          "totalSubGroupsEarned": 0,
+          "totalHoursNeeded": 128,
+          "totalHoursEarned": 124,
+          "subGroups": []
+      },
+      {
+          "title": "HUMANITIES AND SOCIAL SCIENCE REQUIREMENTS",
+          "status": "status statusNO",
+          "totalSubGroupsNeeded": 3,
+          "totalSubGroupsEarned": 2,
+          "totalHoursNeeded": null,
+          "totalHoursEarned": 9,
+          "subGroups": [
+              {
+                  "subGroupTitle": "ONE HISTORY/POL SCIENCE COURSE REQUIRED (WILLIAMS LAW)",
+                  "subGroupStatus": "status Status_OK",
+                  "subGroupTotal": "3",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS17",
+                          "courseNumber": "HISTORY 1200",
+                          "courseName": "Mod Western Civilization",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              },
+              {
+                  "subGroupTitle": "ONE ECON COURSE REQUIRED",
+                  "subGroupStatus": "status Status_OK",
+                  "subGroupTotal": "3",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS17",
+                          "courseNumber": "ECON    1200",
+                          "courseName": "Prin Of Macroeconomics",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              },
+              {
+                  "subGroupTitle": "LITERATURE REQUIREMENT",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "6",
+                  "alternative": [],
+                  "subGroupReqType": "HOURS",
+                  "notFrom": [],
+                  "selectFrom": [],
+                  "takenCourses": [
+                      {
+                          "term": "SP19",
+                          "courseNumber": "ENGLISH 1222",
+                          "courseName": "Amer Lit: 1865 To Pres",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              }
+          ]
+      },
+      {
+          "title": "GENERAL SCIENCE REQUIREMENTS",
+          "status": "status statusNO",
+          "totalSubGroupsNeeded": 6,
+          "totalSubGroupsEarned": 4,
+          "totalHoursNeeded": null,
+          "totalHoursEarned": 18,
+          "subGroups": [
+              {
+                  "subGroupTitle": "PHYSICS I REQUIREMENT",
+                  "subGroupStatus": "status Status_OK",
+                  "subGroupTotal": "1",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS18",
+                          "courseNumber": "PHYSICS 1135",
+                          "courseName": "Engineering Physics I",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              },
+              {
+                  "subGroupTitle": "PHYSICS II REQUIREMENT",
+                  "subGroupStatus": "status Status_OK",
+                  "subGroupTotal": "1",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "SS20",
+                          "courseNumber": "PHYSICS 2135",
+                          "courseName": "Classical Physics II",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              },
+              {
+                  "subGroupTitle": "GENERAL SCIENCE REQUIREMENT",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "1",
+                  "alternative": [
+                      {
+                          "subGroupTitle": "GENERAL SCIENCE REQUIREMENT",
+                          "subGroupStatus": "status Status_NO",
+                          "subGroupTotal": "1",
+                          "alternative": [],
+                          "subGroupReqType": "COURSE",
+                          "notFrom": [],
+                          "selectFrom": [
+                              {
+                                  "dept": "CHEM",
+                                  "number": "1351"
+                              }
+                          ]
+                      }
+                  ],
+                  "subGroupReqType": "GROUP",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "CHEM",
+                          "number": "1310 AND 1319"
+                      },
+                      {
+                          "dept": "BIO SCI",
+                          "number": "1113 AND 1219"
+                      }
+                  ],
+                  "takenCourses": [
+                      {
+                          "term": "FS16",
+                          "courseNumber": "CHEM    1310",
+                          "courseName": "General Chemistry",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              },
+              {
+                  "subGroupTitle": "GENERAL CHEMISTRY REQUIREMENT",
+                  "subGroupStatus": "status Status_OK",
+                  "subGroupTotal": "1",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS17",
+                          "courseNumber": "CHEM    1100",
+                          "courseName": "Intro/Lab Safety&Haz Mtr",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              },
+              {
+                  "subGroupTitle": "COMPUTER SCIENCE REQUIREMENT I",
+                  "subGroupStatus": "status Status_OK",
+                  "subGroupTotal": "1",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS17",
+                          "courseNumber": "COMP SCI1570",
+                          "courseName": "Intro To Programming",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS17",
+                          "courseNumber": "COMP SCI1580",
+                          "courseName": "Intro To Programming Lab",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 2
+              },
+              {
+                  "subGroupTitle": "COMPUTATIONAL SOLVING",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "1",
+                  "alternative": [],
+                  "subGroupReqType": "COURSE",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "COMP SCI",
+                          "number": "1500"
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "title": "BASIC COMMUNICATION COURSES",
+          "status": "status statusOK",
+          "totalSubGroupsNeeded": 1,
+          "totalSubGroupsEarned": 1,
+          "totalHoursNeeded": 0,
+          "totalHoursEarned": 6,
+          "subGroups": [
+              {
+                  "subGroupTitle": "BASIC COMMUNICATION COURSES\t\t\t\t\t\t",
+                  "subGroupStatus": "status",
+                  "subGroupTotal": "2",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS17",
+                          "courseNumber": "ENGLISH 1120",
+                          "courseName": "Exposition and Argumentation",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP18",
+                          "courseNumber": "ENGLISH 1160",
+                          "courseName": "Writing And Research",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 2
+              }
+          ],
+          "totalNeeded": "2"
+      },
+      {
+          "title": "INTRODUCTION TO MATH (OPTIONAL FOR TRANSFER STUDENTS)",
+          "status": "status statusNO",
+          "totalSubGroupsNeeded": 1,
+          "totalSubGroupsEarned": 0,
+          "totalHoursNeeded": null,
+          "totalHoursEarned": 0,
+          "subGroups": [
+              {
+                  "subGroupTitle": "",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "1",
+                  "alternative": [],
+                  "subGroupReqType": "GROUP",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "MATH",
+                          "number": "1101"
+                      }
+                  ]
+              }
+          ],
+          "totalNeeded": "1"
+      },
+      {
+          "title": "REQUIRED MATH COURSES (C OR BETTER REQUIRED)",
+          "status": "status statusNO",
+          "totalSubGroupsNeeded": 3,
+          "totalSubGroupsEarned": 2,
+          "totalHoursNeeded": null,
+          "totalHoursEarned": 25,
+          "subGroups": [
+              {
+                  "subGroupTitle": "REQUIRED MATH COURSES (C OR BETTER REQUIRED)\t\t\t\t\t\t",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "8",
+                  "alternative": [],
+                  "subGroupReqType": "COURSES",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "MATH",
+                          "number": "3109"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "4209"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "4211"
+                      }
+                  ],
+                  "takenCourses": [
+                      {
+                          "term": "FS17",
+                          "courseNumber": "MATH    1208",
+                          "courseName": "Calculus with Analytic Geom I",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS17",
+                          "courseNumber": "MATH    1215",
+                          "courseName": "Calc For Engrs II",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP18",
+                          "courseNumber": "MATH    2222",
+                          "courseName": "Calc with Analy Geom III",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS18",
+                          "courseNumber": "MATH    3304",
+                          "courseName": "Elem Differen Equations",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP19",
+                          "courseNumber": "MATH    3108",
+                          "courseName": "Linear Algebra I",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 5
+              },
+              {
+                  "subGroupTitle": "STATISTICS REQUIREMENT (C OR BETTER REQUIRED)",
+                  "subGroupStatus": "status Status_IP",
+                  "subGroupTotal": "1",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS20",
+                          "courseNumber": "STAT    3113",
+                          "courseName": "Applied Engineering Stat",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              },
+              {
+                  "subGroupTitle": "CAPSTONE COURSE",
+                  "subGroupStatus": "status Status_OK",
+                  "subGroupTotal": "1",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "SP20",
+                          "courseNumber": "MATH    5107",
+                          "courseName": "Combinatorics&Graph Thry",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 1
+              }
+          ]
+      },
+      {
+          "title": "ELECTIVES - MATH/STAT OR COMPUTER SCIENCE COURSES ON THE4000, 5000 LEVEL APPROVED BY THE ADVISER. (C OR BETTERREQUIRED) (CHOOSE 2 GROUPS)",
+          "status": "status statusNO",
+          "totalSubGroupsNeeded": 2,
+          "totalSubGroupsEarned": 0,
+          "totalHoursNeeded": 12,
+          "totalHoursEarned": 0,
+          "subGroups": [
+              {
+                  "subGroupTitle": "GROUP 1",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "2",
+                  "alternative": [],
+                  "subGroupReqType": "COURSES",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "MATH",
+                          "number": "5105"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5106"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5107"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5108"
+                      }
+                  ]
+              },
+              {
+                  "subGroupTitle": "GROUP 2",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "2",
+                  "alternative": [],
+                  "subGroupReqType": "COURSES",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "MATH",
+                          "number": "5105"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5215"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "4530 OR 5530"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5351"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5585"
+                      }
+                  ]
+              },
+              {
+                  "subGroupTitle": "GROUP 3",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "2",
+                  "alternative": [],
+                  "subGroupReqType": "COURSES",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "MATH",
+                          "number": "5302"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5603"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5222"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5325"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5351"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5483"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5604"
+                      }
+                  ]
+              },
+              {
+                  "subGroupTitle": "GROUP 4",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "2",
+                  "alternative": [],
+                  "subGroupReqType": "COURSES",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "STAT",
+                          "number": "5814"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5643"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5644"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5346"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5353"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5755"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5756"
+                      }
+                  ]
+              },
+              {
+                  "subGroupTitle": "GROUP 5",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "2",
+                  "alternative": [],
+                  "subGroupReqType": "COURSES",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "COMP SCI",
+                          "number": "3200"
+                      },
+                      {
+                          "dept": "COMP SCI",
+                          "number": "5201"
+                      },
+                      {
+                          "dept": "COMP SCI",
+                          "number": "5202"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5814"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5346"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5755"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5756"
+                      },
+                      {
+                          "dept": "STAT",
+                          "number": "5260"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5603"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5737"
+                      },
+                      {
+                          "dept": "MATH",
+                          "number": "5604"
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "title": "LANGUAGE AND COMMUNICATION REQUIREMENT",
+          "status": "status statusNO",
+          "totalSubGroupsNeeded": 1,
+          "totalSubGroupsEarned": 0,
+          "totalHoursNeeded": null,
+          "totalHoursEarned": 3,
+          "subGroups": [
+              {
+                  "subGroupTitle": "NEEDS TWO COURSES",
+                  "subGroupStatus": "status Status_NO",
+                  "subGroupTotal": "2",
+                  "alternative": [
+                      {
+                          "subGroupTitle": "SPEECH & MEDIA STUDIES",
+                          "subGroupStatus": "status Status_NO",
+                          "subGroupTotal": "6",
+                          "alternative": [],
+                          "subGroupReqType": "HOURS",
+                          "notFrom": [],
+                          "selectFrom": [
+                              {
+                                  "dept": "SP&M S",
+                                  "number": "****"
+                              }
+                          ],
+                          "takenCourses": [
+                              {
+                                  "term": "SP18",
+                                  "courseNumber": "SP&M S  1185",
+                                  "courseName": "Principles Of Speech",
+                                  "status": "completed"
+                              }
+                          ],
+                          "subGroupEarned": 1
+                      }
+                  ],
+                  "subGroupReqType": "COURSES",
+                  "notFrom": [],
+                  "selectFrom": [
+                      {
+                          "dept": "FRENCH",
+                          "number": "****"
+                      },
+                      {
+                          "dept": "GERMAN",
+                          "number": "****"
+                      },
+                      {
+                          "dept": "RUSSIAN",
+                          "number": "****"
+                      },
+                      {
+                          "dept": "SPANISH",
+                          "number": "****"
+                      }
+                  ]
+              }
+          ],
+          "totalNeeded": "6"
+      },
+      {
+          "title": "TECHNICAL ELECTIVES (15 HRS)",
+          "status": "status statusOK",
+          "totalSubGroupsNeeded": 1,
+          "totalSubGroupsEarned": 1,
+          "totalHoursNeeded": 0,
+          "totalHoursEarned": 41,
+          "subGroups": [
+              {
+                  "subGroupTitle": "TECHNICAL ELECTIVES (15 HRS)\t\t\t\t\t\t",
+                  "subGroupStatus": "status",
+                  "subGroupTotal": "15",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS17",
+                          "courseNumber": "COMP SCI1010",
+                          "courseName": "Intro / Computer Science",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP18",
+                          "courseNumber": "COMP SCI1200",
+                          "courseName": "Discrete Math For Cmp Sc",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP18",
+                          "courseNumber": "COMP SCI1575",
+                          "courseName": "Data Structures",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP18",
+                          "courseNumber": "COMP SCI1585",
+                          "courseName": "Data Structures Lab",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS18",
+                          "courseNumber": "COMP SCI2200",
+                          "courseName": "Theory of Computer Science",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS18",
+                          "courseNumber": "COMP SCI2500",
+                          "courseName": "Algorithms",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP19",
+                          "courseNumber": "COMP SCI2300",
+                          "courseName": "File Struc Intro Databas",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP19",
+                          "courseNumber": "COMP SCI3500",
+                          "courseName": "Prog Lang & Translators",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS19",
+                          "courseNumber": "COMP ENG2210",
+                          "courseName": "Intro to Digital Logic",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS19",
+                          "courseNumber": "COMP SCI3100",
+                          "courseName": "Software Engineering I",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS19",
+                          "courseNumber": "COMP SCI5001",
+                          "courseName": "Special Topics",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS19",
+                          "courseNumber": "COMP SCI5400",
+                          "courseName": "Introduction to Artificial In",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP20",
+                          "courseNumber": "COMP ENG3150",
+                          "courseName": "Intro Micro Embed Design",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP20",
+                          "courseNumber": "COMP SCI4610",
+                          "courseName": "Intro Computer Security",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP20",
+                          "courseNumber": "PHYSICS 1505",
+                          "courseName": "Introductory Astronomy",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 15
+              }
+          ],
+          "totalNeeded": "15"
+      },
+      {
+          "title": "FREE ELECTIVES (6 HRS OF ADVANCED ROTC MAY BE COUNTED)(22 HRS)",
+          "status": "status statusIP",
+          "totalSubGroupsNeeded": 1,
+          "totalSubGroupsEarned": 1,
+          "totalHoursNeeded": 0,
+          "totalHoursEarned": 22,
+          "subGroups": [
+              {
+                  "subGroupTitle": "FREE ELECTIVES (6 HRS OF ADVANCED ROTC MAY BE COUNTED)(22 HRS)\t\t\t\t\t\t",
+                  "subGroupStatus": "status",
+                  "subGroupTotal": "22",
+                  "alternative": [],
+                  "takenCourses": [
+                      {
+                          "term": "FS17",
+                          "courseNumber": "PSYCH   1101",
+                          "courseName": "General Psychology",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS17",
+                          "courseNumber": "STAT    1115",
+                          "courseName": "Statistics for Soc Sciences I",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS18",
+                          "courseNumber": "MUSIC   1150",
+                          "courseName": "Mus Undrstandng & Apprec",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP19",
+                          "courseNumber": "PHILOS  3235",
+                          "courseName": "Business Ethics",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "SP20",
+                          "courseNumber": "PHYSICS 1509",
+                          "courseName": "Astronomy Laboratory",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS20",
+                          "courseNumber": "COMP SCI3800",
+                          "courseName": "Intro To Operating Syst",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS20",
+                          "courseNumber": "COMP SCI4096",
+                          "courseName": "Software Syst Developmnt",
+                          "status": "completed"
+                      },
+                      {
+                          "term": "FS20",
+                          "courseNumber": "COMP SCI5300",
+                          "courseName": "Database Systems",
+                          "status": "completed"
+                      }
+                  ],
+                  "subGroupEarned": 8
+              }
+          ],
+          "totalNeeded": "22"
+      }
+  ]
+}
