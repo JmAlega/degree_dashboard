@@ -77,7 +77,7 @@ function UploadDegree () {
     <div>
       <Header />
       <div className={styleClasses.uploadPage}>
-        <Link to='/upload-audit'>
+        <Link to='/upload-audit-first-time'>
           <Button className={styleClasses.upload}>Upload Audit</Button>
         </Link>
 
