@@ -27,8 +27,17 @@ const useStyles = makeStyles((theme) => ({
 
 function SemesterPlan (props) {
 
-  const [schedule] = useState(props.schedule_array);
+  const [schedule, setSchedule] = useState(props.schedule_array);
   const classes = useStyles();
+
+  const addSemester = () => {
+    setSchedule(oldSchedule => [...oldSchedule, 
+      { 
+        semester: 'New semester',
+        courses: [ {'title': 'Add Course', 'description': ''},]
+      }]
+    );
+  }
   
    return (
     <div>
@@ -44,7 +53,7 @@ function SemesterPlan (props) {
         
         <div className="sections">
           <div className="addSem">
-            <Button variant="contained" endIcon={<AddIcon/>}>{"Add Semester"}</Button>
+            <Button variant="contained" endIcon={<AddIcon/>} onClick={addSemester}>{"Add Semester"} </Button>
           </div>
           <div style={{display: "flex", flexDirection: "row"}}>
             <div style={{display: "flex", flexDirection: "column", width: "60%"}}>

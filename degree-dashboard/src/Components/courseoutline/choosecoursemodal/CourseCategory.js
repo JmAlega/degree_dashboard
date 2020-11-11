@@ -12,7 +12,7 @@ import Box from '@material-ui/core/Box';
 function CourseCategory(props) {
     var header = Object.keys(props.category)[0];
     var courses = props.category[header];
-    console.log(header);
+    console.log('in CourseCategory: ', header);
 
     return (
         <Accordion overflow='hidden'>

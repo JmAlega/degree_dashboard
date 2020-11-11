@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -32,34 +32,33 @@ function CurrentClasses ({semester, courses}) {
   var i;
   
   const classes = useStyles();
-
+  const [openPopup, setOpenPopup] = useState(false);
+  
   return (
     <div style={{display: "flex", flexDirection: "row"}}>
-      {courses.map(course => 
-        <Box paddingRight={2} paddingBottom={2}>
-          <Card className={classes.root}>
-            <CardHeader
-              action={
-                course.title !== "Add Course" && 
-                <IconButton aria-label="settings">
-                  <CloseIcon />
-                </IconButton>
-              }
-              title={course.title}
-              titleTypographyProps={{variant: "body1"}}
-              style={{ paddingBottom: "0px"}}
-              />
-            <CardContent style={{paddingBottom: "0px", paddingTop: "0px"}}>
-              {
-                course.title === "Add Course" ?
-                <ChooseCourse open={true}/> :
+      <div style={{display: "flex", flexDirection: "row"}} onClick={() => setOpenPopup(true)}>
+        {courses.map(course => 
+          <Box paddingRight={2} paddingBottom={2}>
+            <Card className={classes.root} onClick={course.title === "Add Course" ? () => setOpenPopup(true) : () => setOpenPopup(false)}>
+              <CardHeader
+                action={
+                  course.title !== "Add Course" && 
+                  <IconButton aria-label="settings">
+                    <CloseIcon />
+                  </IconButton>
+                }
+                title={course.title}
+                titleTypographyProps={{variant: "body1"}}
+                style={{ paddingBottom: "0px"}}
+                />
+              <CardContent style={{paddingBottom: "0px", paddingTop: "0px"}}>
                 <Typography variant="caption" color="textSecondary">{course.description}</Typography>
-              }
-
-            </CardContent>
-          </Card>
-        </Box>
-      )}
+              </CardContent>
+            </Card>
+          </Box>
+        )}
+      </div>
+      {openPopup && <ChooseCourse open={true} handleClose={setOpenPopup} semester={semester}/>}
     </div>
   )
 }

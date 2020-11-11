@@ -29,6 +29,7 @@ function ChooseCourse(props) {
   };
   const handleClose = () => {
     setOpen(false);
+    props.handleClose(false);
   };
 
   return (
@@ -43,7 +44,7 @@ function ChooseCourse(props) {
             fullWidth={true}
             maxWidth={'md'}
         >
-            <DialogTitle id="customized-dialog-title">{"Spring 2022"}</DialogTitle>
+            <DialogTitle id="customized-dialog-title">{props.semester}</DialogTitle>
             <DialogContent dividers>
                 {sampleData.map (category => <CourseCategory category={category}/>) }
             </DialogContent>

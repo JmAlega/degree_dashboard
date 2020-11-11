@@ -18,6 +18,90 @@ function App() {
     sessionStorage.setItem('loggedIn', 'false');
   }
 
+  const scheduleJA = [
+    {
+      semester: 'Fall 2017',
+      courses: [
+        {'title': 'CHEM 110', 'description': 'Intro/Lab Safety&Haz Mtr'},
+        {'title': 'COMP SCI 1010', 'description': 'Intro / Computer Science'},
+        {'title': 'COMP SCIE 1570', 'description': 'Intro To Programming'},
+        {'title': 'COMP SCI 1580', 'description': 'Intro To Programming Lab'},
+        {'title': 'ECON 1200', 'description': 'Prin Of Macroeconomics'},
+        {'title': 'HISTORY 1200', 'description': 'Mod Western Civilization'},
+        {'title': 'MATH 1215', 'description': 'Calc For Engrs II'},
+      ]
+    }, 
+    {
+      semester: 'Spring 2018',
+      courses: [
+        {'title': 'COMP SCI 1200', 'description': 'Discrete Math For Cmp Sc'},
+        {'title': 'COMP SCI 1575', 'description': 'Data Structures'},
+        {'title': 'COMP SCI 1585', 'description': 'Data Structures Lab'},
+        {'title': 'ENGLISH 1160', 'description': 'Writing And Research'},
+        {'title': 'MATH 2222', 'description': 'Calc with Analy Geom III'},
+        {'title': 'SP&M S 1185', 'description': 'Principles Of Speech'},
+      ]
+    },
+    {
+      semester: 'Fall 2018',
+      courses: [
+        {'title': 'COMP SCI 2200', 'description': 'Theory of Computer Science'},
+        {'title': 'COMP SCI 2500', 'description': 'Algorithms'},
+        {'title': 'MATH 3304', 'description': 'Elem Differen Equations'},
+        {'title': 'MUSIC 1150', 'description': 'Mus Undrstandng & Apprec'},
+        {'title': 'PHYSICS 1135', 'description': 'Engineering Physics I'},
+      ]
+    },
+    {
+      semester: 'Spring 2019',
+      courses: [
+        {'title': 'COMP SCI 2300', 'description': 'File Struc Intro Databas'},
+        {'title': 'COMP SCI 3500', 'description': 'Prog Lang & Translators'},
+        {'title': 'ENGLISH 1222', 'description': 'Amer Lit: 1865 To Pres'},
+        {'title': 'MATH 3108', 'description': 'Linear Algebra I'},
+        {'title': 'PHILOS 3235', 'description': 'Business Ethics'},
+      ]
+    },
+    {
+      semester: 'Fall 2019',
+      courses: [
+        {'title': 'COMP ENG 2210', 'description': 'Intro to Digital Logic'},
+        {'title': 'COMP SCI 3100', 'description': 'Software Engineering I'},
+        {'title': 'COMP SCI 5001', 'description': 'Special Topics'},
+        {'title': 'COMP SCI 5400', 'description': 'Introduction to Artificial In'},
+        {'title': 'PHYSICS 2135', 'description': 'Classical Physics II'},
+      ]
+    },
+    {
+      semester: 'Spring 2020',
+      courses: [
+        {'title': 'COMP ENG 3150', 'description': 'Intro Micro Embed Design'},
+        {'title': 'COMP SCI 4610', 'description': 'Intro Computer Security'},
+        {'title': 'MATH 5107', 'description': 'Combinatorics&Graph Thry'},
+        {'title': 'PHYSICS 1505', 'description': 'Introductory Astronomy'},
+        {'title': 'PHYSICS 1509', 'description': 'Astronomy Laboratory'},
+      ]
+    },
+    {
+      semester: 'Fall 2020',
+      courses: [
+        {'title': 'COMP SCI 3800', 'description': 'Intro To Operating Syst'},
+        {'title': 'COMP SCI 4096', 'description': 'Software Syst Developmnt'},
+        {'title': 'COMP SCI 5300', 'description': 'Database Systems'},
+        {'title': 'STAT 3113', 'description': 'Applied Engineering Stat'},
+      ]
+    },
+    {
+      semester: 'Spring 2021',
+      courses: [{'title': 'Add Course', 'description': ''},]
+    },
+    {
+      semester: 'Fall 2021',
+      courses: [{'title': 'Add Course', 'description': ''},]
+    }
+
+  ]
+
 	const schedule = [
     { 
 		  semester: 'Spring 2021',
@@ -105,13 +189,13 @@ function App() {
 		
         <ProtectedRoute path='/courseoutline' component={() =>
           <SemesterPlan
-            schedule_array={schedule}
+            schedule_array={scheduleJA}
           />}
         />
 
 
-    {/* Choose Course */}
-    <ProtectedRoute path='/choose-course' component={() => <ChooseCourse/>} />
+      {/* Choose Course */}
+      <ProtectedRoute path='/choose-course' component={() => <ChooseCourse/>} />
 
       </Switch>
 

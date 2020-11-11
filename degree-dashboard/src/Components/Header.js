@@ -119,7 +119,7 @@ const Header = ({component: Component, ...rest }) => {
                         <Button color={getColor("/schedule")} variant={getVariant("/schedule")} onClick={schedule}>Schedule</Button>
                         <Button color={getColor("/course-view")} variant={getVariant("/course-view")} onClick={courseview}>Course History</Button>
                         <Button color={getColor("/courses")} variant={getVariant("/courses")} onClick={courses}>Courses</Button>
-                        <Button color={getColor("/course-outline")} variant={getVariant("/course-outline")} onClick={courseoutline}>Course Outline</Button>
+                        <Button color={getColor("/courseoutline")} variant={getVariant("/courseoutline")} onClick={courseoutline}>Course Outline</Button>
                         {loggedIn ? <IconButton
 
                         aria-label="account of current user"
