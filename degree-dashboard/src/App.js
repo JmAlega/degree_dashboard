@@ -71,40 +71,41 @@ function App() {
         <ProtectedRoute exact path='/' component={Index} />
 
         {/* Course View */}
-        <ProtectedRoute path='/upload-audit-first-time' component={UploadDegree} />
+        <ProtectedRoute path='/upload-audit-first-time' component={UploadAudit} />
 
         {/* Course View */}
-        <ProtectedRoute path='/upload-audit' component={UploadAudit} />
+        <ProtectedRoute path='/upload-audit' component={UploadDegree} />
 
         {/* Dashboard */}
         <ProtectedRoute path='/dashboard' component={Dashboard} />
 
         {/* Course View */}
-        <ProtectedRoute path='/course-view' component={() => <CourseView 
-                                            courseName="CS 1200" 
-                                            desc="This is a description" 
-                                            pre="These are prerequisites" 
-                                            reqFor="These are classes this class is required for"
-                                            req="Is this class required for your major" 
-                                            class_array={
-                                              [
-                                                { 
-                                                  avail: "MWF 11-2", 
-                                                  prof: "Morales"
-                                                }, 
-                                                { 
-                                                  avail: "MWF 2-3", 
-                                                  prof: "Price"
-                                                },
-                                                { 
-                                                  avail: "TTH 11-12:30", 
-                                                  prof: "Markowski"
-                                                },
-                                              ]} />} />
-											  
-		<ProtectedRoute path='/courseoutline' component={() => <SemesterPlan
-													schedule_array={schedule}
-													/>} />
+        <ProtectedRoute path='/course-view' component={() => 
+          <CourseView 
+            subject="COMP SCI"
+            number="4610" 
+            class_array={
+              [
+                { 
+                  avail: "MWF 11-2", 
+                  prof: "Morales"
+                }, 
+                { 
+                  avail: "MWF 2-3", 
+                  prof: "Price"
+                },
+                { 
+                  avail: "TTH 11-12:30", 
+                  prof: "Markowski"
+                },
+              ]} 
+            />}
+          />
+		
+        <ProtectedRoute path='/courseoutline' component={() => <SemesterPlan
+												schedule_array={schedule}
+                      />}
+                    />
 
 
       </Switch>

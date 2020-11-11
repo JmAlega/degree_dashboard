@@ -20,7 +20,17 @@ module.exports = function(app, client) {
           message: 'No audit uploaded'
         });
       } else {
-        let audit = readAudit(req.files.audit);
+        let file = req.files.audit;
+        //console.log(file.mimetype);
+        if(file.mimetype != "text/html") {
+          res.status(500).json({
+            status: false,
+            message: "Audit is not in HTML format"
+          });
+          return;
+        }
+        let audit = readAudit(file);
+        
         db.collection('Users').findOne({'email':req.body.email})
           .then(doc => {
             db.collection('Users').update({_id:doc._id}, {$set:{degree_audit:audit}}, (err, result) => {
