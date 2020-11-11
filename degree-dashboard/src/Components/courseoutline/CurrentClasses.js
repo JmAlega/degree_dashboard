@@ -12,6 +12,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Box from '@material-ui/core/Box';
+import ChooseCourse from './ChooseCourse';
 
 
 
@@ -49,7 +50,12 @@ function CurrentClasses ({semester, courses}) {
               style={{ paddingBottom: "0px"}}
               />
             <CardContent style={{paddingBottom: "0px", paddingTop: "0px"}}>
-              <Typography variant="caption" color="textSecondary">{course.description}</Typography>
+              {
+                course.title === "Add Course" ?
+                <ChooseCourse open={true}/> :
+                <Typography variant="caption" color="textSecondary">{course.description}</Typography>
+              }
+
             </CardContent>
           </Card>
         </Box>

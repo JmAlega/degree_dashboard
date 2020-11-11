@@ -21,8 +21,8 @@ const sampleData = [
     ]},
 ]
 
-function ChooseCourse() {
-  const [open, setOpen] = React.useState(false);
+function ChooseCourse(props) {
+  const [open, setOpen] = React.useState(props.open);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,9 +33,9 @@ function ChooseCourse() {
 
   return (
     <div>
-        <Button variant="contained" color="primary" onClick={handleClickOpen}>
+        {/* <Button variant="contained" color="primary" onClick={handleClickOpen}>
             Choose Courses    
-        </Button>
+        </Button> */}
         <Dialog 
             onClose={handleClose} 
             aria-labelledby="customized-dialog-title" 
