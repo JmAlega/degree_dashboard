@@ -164,7 +164,7 @@ function App() {
         {/* Dashboard */}
         <ProtectedRoute path='/dashboard' component={Dashboard} />
 
-        {/* Course View */}
+        {/* Course View
         <ProtectedRoute path='/course-view' component={() => 
           <CourseView 
             subject="COMP SCI"
@@ -185,7 +185,7 @@ function App() {
                 },
               ]} 
             />}
-          />
+          /> */}
 		
         <ProtectedRoute path='/courseoutline' component={() =>
           <SemesterPlan

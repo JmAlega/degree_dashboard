@@ -37,6 +37,7 @@ function ChooseCourse(props) {
         {/* <Button variant="contained" color="primary" onClick={handleClickOpen}>
             Choose Courses    
         </Button> */}
+        
         <Dialog 
             onClose={handleClose} 
             aria-labelledby="customized-dialog-title" 
