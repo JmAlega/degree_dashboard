@@ -56,25 +56,6 @@ function CourseInfo ({desc, pre, reqFor, req}) {
           </CardContent>
         </Card>
       </div>
-
-      <div className={styleClasses.descriptors}>
-        <Typography variant="h6" className={styleClasses.descriptorTitle}>Required For: </Typography>
-        <Card className={styleClasses.descriptorBox}>
-          <CardContent>
-            <Typography variant="body1" className={styleClasses.information}>{reqFor}</Typography>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className={styleClasses.descriptors}>
-        <Typography variant="h6" className={styleClasses.descriptorTitle}>Required: </Typography>
-        <Card className={styleClasses.descriptorBox}>
-          <CardContent>
-            <Typography variant="body1" className={styleClasses.information}>{req}</Typography>
-          </CardContent>
-        </Card>
-      </div>
-
     </div>
   )
 }

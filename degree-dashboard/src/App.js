@@ -198,6 +198,7 @@ function App() {
       <ProtectedRoute path='/choose-course' component={() => <ChooseCourse/>} />
 
       </Switch>
+      
 
     </Router>
   );
