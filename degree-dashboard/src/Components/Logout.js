@@ -54,6 +54,7 @@ export default function CustomizedMenus() {
   };
   
   const handleLogout = () => {
+    sessionStorage.setItem('loggedIn', 'false');
     history.push('/login')
   };
   return (
