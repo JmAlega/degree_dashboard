@@ -11,11 +11,13 @@ const useStyles = makeStyles({
     position: 'relative',
     fontFamily: 'sans-serif',
     marginTop: '40px',
-    background: 'none'
+    background: 'none',
+    marginBottom: "50px"
   },
   classTitle: {
     textAlign: 'center',
     fontWeight: "bold",
+    marginTop: "20px"
   },
   sections: {
     display: 'flex',

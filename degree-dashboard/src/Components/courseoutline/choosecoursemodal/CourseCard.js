@@ -83,7 +83,6 @@ function CourseCard(props) {
                     />
                   </DialogContent>
                 </Dialog>
-
               </CardActions>
             </Card>
         </Box>
