@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Box from '@material-ui/core/Box';
 import ChooseCourse from './ChooseCourse';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
 
@@ -26,6 +27,14 @@ import ChooseCourse from './ChooseCourse';
 
 }));
 
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+
+  // styles we need to apply on draggables
+  ...draggableStyle,
+});
+
 function CurrentClasses ({semester, courses}) {
 
   var buttonDescriptions = new Array(6);
@@ -37,8 +46,19 @@ function CurrentClasses ({semester, courses}) {
   return (
     <div style={{display: "flex", flexDirection: "row"}}>
       <div style={{display: "flex", flexDirection: "row"}} onClick={() => setOpenPopup(true)}>
-        {courses.map(course => 
-          <Box paddingRight={2} paddingBottom={2}>
+        {courses.map((course, index) => 
+           <Draggable draggableId={course.title} index={index}>
+           {(provided, snapshot) => (
+             <div
+               ref={provided.innerRef}
+               {...provided.draggableProps}
+               {...provided.dragHandleProps}
+               style={getItemStyle(
+                snapshot.isDragging,
+                provided.draggableProps.style
+              )}
+             >
+               <Box paddingRight={2} paddingBottom={2}>
             <Card className={classes.root} onClick={course.title === "Add Course" ? () => setOpenPopup(true) : () => setOpenPopup(false)}>
               <CardHeader
                 action={
@@ -56,6 +76,9 @@ function CurrentClasses ({semester, courses}) {
               </CardContent>
             </Card>
           </Box>
+             </div>
+           )}
+         </Draggable>
         )}
       </div>
       {openPopup && <ChooseCourse open={true} handleClose={setOpenPopup} semester={semester}/>}

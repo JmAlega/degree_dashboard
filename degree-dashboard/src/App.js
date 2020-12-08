@@ -15,7 +15,7 @@ import ChooseCourse from './Components/courseoutline/ChooseCourse';
 
 function App() {
   if (sessionStorage.getItem('loggedIn') == null) {
-    sessionStorage.setItem('loggedIn', 'false');
+    sessionStorage.setItem('loggedIn', 'true');
   }
 
   const scheduleJA = [
