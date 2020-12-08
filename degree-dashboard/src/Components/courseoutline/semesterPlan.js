@@ -18,7 +18,7 @@ const reorder = (list, startIndex, endIndex) => {
   console.log(list);
   console.log(startIndex);
   console.log(endIndex);
-  const result = Array.from(list);
+  const result = Array.from(list.courses);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
 
@@ -140,18 +140,18 @@ function SemesterPlan (props) {
                     <Typography variant="h5" style={{marginLeft: "5px"}}>{available_classes.semester}</Typography>
                     </AccordionSummary>
                     <AccordionDetails overflow="auto">
-                      {console.log(available_classes.semester)}
+                      
                       <Droppable droppableId={available_classes.semester} key={i} direction="horizontal" ignoreContainerClipping={true}>
                       
                         {(provided, snapshot) => (
                           <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
                             { console.log(available_classes)}
-                            <Box overflow='auto'>
+                            
                               <CurrentClasses 
                                 courses={available_classes.courses}
                                 semester={available_classes.semester}
                               />
-                            </Box>
+                            
                       
                             {provided.placeholder}
                           </div>
