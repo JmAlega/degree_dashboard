@@ -31,7 +31,7 @@ const getListStyle = isDraggingOver => ({
   overflow: 'auto',
 });
 
-const move = (source, destination, droppableSource, droppableDestination) => {
+const move = (source, destination, droppableSource, droppableDestination, sInd, dInd) => {
   console.log("dropsrc");
   console.log(droppableSource);
   console.log("dropDest");
@@ -45,8 +45,8 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   destClone.splice(droppableDestination.index, 0, removed);
 
   const result = {};
-  result[droppableSource.droppableId] = sourceClone;
-  result[droppableDestination.droppableId] = destClone;
+  result[sInd] = sourceClone;
+  result[dInd] = destClone;
   console.log(result);
   return result;
 };
@@ -75,9 +75,12 @@ function SemesterPlan (props) {
     if (!destination) {
       return;
     }
-    const sInd = +source.droppableId;
-    const dInd = +destination.droppableId;
-
+    console.log(schedule);
+    const sInd = schedule.findIndex(element => element.semester==source.droppableId);
+    console.log("sInd");
+    console.log(sInd)
+    const dInd = schedule.findIndex(element => element.semester==destination.droppableId);
+    console.log(result);
     if (sInd === dInd) {
       const items = reorder(schedule[sInd], source.index, destination.index);
       const newState = [...schedule];
@@ -85,11 +88,12 @@ function SemesterPlan (props) {
       console.log("here");
       setSchedule(newState);
     } else {
-      const result = move(schedule[sInd], schedule[dInd], source, destination);
+      const result = move(schedule[sInd], schedule[dInd], source, destination, sInd, dInd);
       const newState = [...schedule];
       newState[sInd].courses = result[sInd];
       newState[dInd].courses = result[dInd];
       console.log("there");
+      console.log(newState);
       setSchedule(newState);
     }
   }
@@ -125,6 +129,7 @@ function SemesterPlan (props) {
           <div style={{display: "flex", flexDirection: "column", width: "60%"}}>
     <DragDropContext onDragEnd={onDragEnd}>
       {schedule.map((available_classes, i) => (
+        
           <Box paddingTop={2} paddingBottom={2}>
                   <Accordion defaultExpanded="True" style={{ boxShadow: "1px 2px 5px grey" }}>
                     <AccordionSummary
@@ -135,16 +140,18 @@ function SemesterPlan (props) {
                     <Typography variant="h5" style={{marginLeft: "5px"}}>{available_classes.semester}</Typography>
                     </AccordionSummary>
                     <AccordionDetails overflow="auto">
-                      <Droppable droppableId={i} direction="horizontal">
+                      {console.log(available_classes.semester)}
+                      <Droppable droppableId={available_classes.semester} key={i} direction="horizontal" ignoreContainerClipping={true}>
+                      
                         {(provided, snapshot) => (
                           <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
-                            
-                      <Box overflow='auto'>
-                        <CurrentClasses 
-                          courses={available_classes.courses}
-                          semester={available_classes.semester}
-                        />
-                      </Box>
+                            { console.log(available_classes)}
+                            <Box overflow='auto'>
+                              <CurrentClasses 
+                                courses={available_classes.courses}
+                                semester={available_classes.semester}
+                              />
+                            </Box>
                       
                             {provided.placeholder}
                           </div>

@@ -45,7 +45,7 @@ function CurrentClasses ({semester, courses}) {
   
   return (
     <div style={{display: "flex", flexDirection: "row"}}>
-      <div style={{display: "flex", flexDirection: "row"}} onClick={() => setOpenPopup(true)}>
+      <div style={{display: "flex", flexDirection: "row"}} >
         {courses.map((course, index) => 
            <Draggable draggableId={course.title} index={index}>
            {(provided, snapshot) => (
