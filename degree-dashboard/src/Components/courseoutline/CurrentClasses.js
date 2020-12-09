@@ -57,7 +57,8 @@ function CurrentClasses (props) {
     console.log(number + title);
     props.handleRemoveClass({title: number, description: title}, props.semester);
   }
-
+  //console.log('props in currentClasses');
+  //console.log(props);
   return (
     <div style={{display: "flex", flexDirection: "row"}}>
       <div style={{display: "flex", flexDirection: "row"}}>

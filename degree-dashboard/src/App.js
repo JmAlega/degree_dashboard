@@ -20,7 +20,7 @@ function App() {
 
   const scheduleJA = [
     {
-      semester: 'Fall 2017',
+      semester: {'season': 'Fall', 'year': '2017'},
       courses: [
         {'title': 'CHEM 110', 'description': 'Intro/Lab Safety&Haz Mtr'},
         {'title': 'COMP SCI 1010', 'description': 'Intro / Computer Science'},
@@ -32,7 +32,7 @@ function App() {
       ]
     }, 
     {
-      semester: 'Spring 2018',
+      semester: {'season': 'Spring', 'year': '2018'},
       courses: [
         {'title': 'COMP SCI 1200', 'description': 'Discrete Math For Cmp Sc'},
         {'title': 'COMP SCI 1575', 'description': 'Data Structures'},
@@ -43,7 +43,7 @@ function App() {
       ]
     },
     {
-      semester: 'Fall 2018',
+      semester: {'season': 'Fall', 'year': '2018'},
       courses: [
         {'title': 'COMP SCI 2200', 'description': 'Theory of Computer Science'},
         {'title': 'COMP SCI 2500', 'description': 'Algorithms'},
@@ -53,7 +53,7 @@ function App() {
       ]
     },
     {
-      semester: 'Spring 2019',
+      semester: {'season': 'Spring', 'year': '2019'},
       courses: [
         {'title': 'COMP SCI 2300', 'description': 'File Struc Intro Databas'},
         {'title': 'COMP SCI 3500', 'description': 'Prog Lang & Translators'},
@@ -63,7 +63,7 @@ function App() {
       ]
     },
     {
-      semester: 'Fall 2019',
+      semester: {'season': 'Fall', 'year': '2019'},
       courses: [
         {'title': 'COMP ENG 2210', 'description': 'Intro to Digital Logic'},
         {'title': 'COMP SCI 3100', 'description': 'Software Engineering I'},
@@ -73,7 +73,7 @@ function App() {
       ]
     },
     {
-      semester: 'Spring 2020',
+      semester: {'season': 'Spring', 'year': '2020'},
       courses: [
         {'title': 'COMP ENG 3150', 'description': 'Intro Micro Embed Design'},
         {'title': 'COMP SCI 4610', 'description': 'Intro Computer Security'},
@@ -83,7 +83,7 @@ function App() {
       ]
     },
     {
-      semester: 'Fall 2020',
+      semester: {'season': 'Fall', 'year': '2020'},
       courses: [
         {'title': 'COMP SCI 3800', 'description': 'Intro To Operating Syst'},
         {'title': 'COMP SCI 4096', 'description': 'Software Syst Developmnt'},
@@ -92,11 +92,11 @@ function App() {
       ]
     },
     {
-      semester: 'Spring 2021',
+      semester: {'season': 'Spring', 'year': '2021'},
       courses: [{'title': 'Add Course', 'description': ''},]
     },
     {
-      semester: 'Fall 2021',
+      semester: {'season': 'Fall', 'year': '2021'},
       courses: [{'title': 'Add Course', 'description': ''},]
     }
 

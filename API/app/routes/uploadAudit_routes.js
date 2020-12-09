@@ -119,47 +119,62 @@ function getClassesTaken(requirement, reqObj) {
 
     if(!semesterTerm.match(/AU/, 'i')) {
       if(grade.match(/EXT/, 'i')) {
-        if(reqObj.schedule.filter(e => e.semester === 'Exempted Classes').length === 0) {
-          reqObj.schedule.push({
-            semester: 'Exempted Classes',
+        if(reqObj.schedule.filter(e => e.semester.season === 'Exempted Classes').length === 0) {
+          reqObj.schedule.unshift({
+            semester: {
+              season: 'Exempted Classes',
+              year: '',
+            },
             classes: []
           });
         }
         // console.log('created exempted classes');
-        const exemptedClassesList = reqObj.schedule.filter(e => e.semester === 'Exempted Classes');
+        const exemptedClassesList = reqObj.schedule.filter(e => e.semester.season === 'Exempted Classes');
         if(exemptedClassesList.length === 1) {
           exemptedClassesList[0].classes.push({subjectId: subjectId, number: number}); 
         }
       } else if(semesterTerm === "FS") {
-        if(reqObj.schedule.filter(e => e.semester === 'Fall '+semesterYear).length === 0) {
+        let formattedYear = '20'+semesterYear;
+        if(reqObj.schedule.filter(e => e.semester.season === 'Fall' && e.semester.year === formattedYear).length === 0) {
           reqObj.schedule.push({
-            semester: 'Fall '+semesterYear,
+            semester: {
+              season: 'Fall',
+              year: formattedYear,
+            },
             classes: []
           });
         }
-        const fallClassList = reqObj.schedule.filter(e => e.semester === 'Fall '+semesterYear);
+        const fallClassList = reqObj.schedule.filter(e => e.semester.season === 'Fall' && e.semester.year === formattedYear);
         if(fallClassList.length === 1) {
           fallClassList[0].classes.push({subjectId: subjectId, number: number});
         }
       } else if(semesterTerm === "SP") {
-        if(reqObj.schedule.filter(e => e.semester === 'Spring '+semesterYear).length === 0) {
+        let formattedYear = '20'+semesterYear;
+        if(reqObj.schedule.filter(e => e.semester.season === 'Spring' && e.semester.year === formattedYear).length === 0) {
           reqObj.schedule.push({
-            semester: 'Spring '+semesterYear,
+            semester: {
+              season: 'Spring',
+              year: formattedYear,
+            },
             classes: []
           });
         }
-        const springClassList = reqObj.schedule.filter(e => e.semester === 'Spring '+semesterYear);
+        const springClassList = reqObj.schedule.filter(e => e.semester.season === 'Spring' && e.semester.year === formattedYear);
         if(springClassList.length === 1) {
           springClassList[0].classes.push({subjectId: subjectId, number: number});
         }
       } else if(semesterTerm === "SS") {
-        if(reqObj.schedule.filter(e => e.semester === 'Summer '+semesterYear).length === 0) {
+        let formattedYear = '20'+semesterYear;
+        if(reqObj.schedule.filter(e => e.semester.season === 'Summer' && e.semester.year === formattedYear).length === 0) {
           reqObj.schedule.push({
-            semester: 'Summer '+semesterYear,
+            semester: {
+              season: 'Summer',
+              year: formattedYear,
+            },
             classes: []
           });
         }
-        const summerClassList = reqObj.schedule.filter(e => e.semester === 'Summer '+semesterYear);
+        const summerClassList = reqObj.schedule.filter(e => e.semester.season === 'Summer' && e.semester.year === formattedYear);
         if(summerClassList.length === 1) {
           summerClassList[0].classes.push({subjectId: subjectId, number: number});
           //console.log('pushed ' + courseTitle);
