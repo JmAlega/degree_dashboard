@@ -12,6 +12,46 @@ import Box from '@material-ui/core/Box';
 import AddIcon from '@material-ui/icons/Add';
 import Header from '../Header.js';
 import Requirements from '../Requirements';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+const reorder = (list, startIndex, endIndex) => {
+  console.log(list);
+  console.log(startIndex);
+  console.log(endIndex);
+  const result = Array.from(list.classes);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? 'lightblue' : 'white',
+  display: 'flex',
+  overflow: 'auto',
+});
+
+const move = (source, destination, droppableSource, droppableDestination, sInd, dInd) => {
+  console.log("dropsrc");
+  console.log(droppableSource);
+  console.log("dropDest");
+  console.log(droppableDestination);
+  console.log('SOURCE')
+  console.log(source);
+  console.log('DESTINATION')
+  console.log(destination);
+  const sourceClone = Array.from(source.classes);
+  const destClone = Array.from(destination.classes);
+  const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+  destClone.splice(droppableDestination.index, 0, removed);
+
+  const result = {};
+  result[sInd] = sourceClone;
+  result[dInd] = destClone;
+  console.log(result);
+  return result;
+};
 
 const axios = require('axios');
 
@@ -25,20 +65,69 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 function SemesterPlan (props) {
-
-  const [schedule, setSchedule] = useState(props.schedule_array);
+  
+  const [schedule, setSchedule] = useState();
   const [classList, setClassList] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingClassList, setIsLoadingClassList] = useState(true);
+  const [isLoadingSchedule, setIsLoadingSchedule] = useState(true);
   const classes = useStyles();
+  const email = sessionStorage.getItem('email');
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/getSchedules/'+email)
+    .then(res => {
+      console.log(res.data[0].schedule);
+      setSchedule(res.data[0].schedule);
+      setIsLoadingSchedule(false);
+    })
+  }, [])
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/getAllCourses')
+    .then(res => {
+      //console.log('RESPONSE: ')
+      //console.log(res);
+      setClassList(res.data.classes);
+      setIsLoadingClassList(false);
+    })
+  }, [])
+
+  function onDragEnd(result) {
+    const { source, destination } = result;
+
+    // dropped outside the list
+    if (!destination) {
+      return;
+    }
+    console.log(schedule);
+    const sInd = schedule.findIndex(element => element.semester==source.droppableId);
+    console.log("sInd");
+    console.log(sInd)
+    const dInd = schedule.findIndex(element => element.semester==destination.droppableId);
+    console.log(result);
+    if (sInd === dInd) {
+      const items = reorder(schedule[sInd], source.index, destination.index);
+      const newState = [...schedule];
+      newState[sInd].classes = items;
+      console.log("here");
+      setSchedule(newState);
+    } else {
+      const result = move(schedule[sInd], schedule[dInd], source, destination, sInd, dInd);
+      const newState = [...schedule];
+      newState[sInd].classes = result[sInd];
+      newState[dInd].classes = result[dInd];
+      console.log("there");
+      console.log(newState);
+      setSchedule(newState);
+    }
+  }
 
   const addSemester = () => {
     setSchedule(oldSchedule => [...oldSchedule, 
       { 
         semester: 'New semester',
-        courses: [ {'title': 'Add Course', 'description': ''},]
+        classes: [ {'title': 'Add Course', 'description': ''},]
       }]
     );
   }
@@ -50,7 +139,7 @@ function SemesterPlan (props) {
     let newArr = [...schedule];
     for(let i = 0; i < schedule.length; i++) {
       if(schedule[i].semester === semester) {
-        newArr[i].courses.push(course);
+        newArr[i].classes.push(course);
         break;
       }
     }
@@ -61,9 +150,9 @@ function SemesterPlan (props) {
     let newArr = [...schedule];
     for(let i = 0; i < newArr.length; i++) {
       if(newArr[i].semester === semester) {
-        for(let j = 0; j < newArr[i].courses.length; j++) {
-          if(newArr[i].courses[j].title === course.title && newArr[i].courses[j].description === course.description) {
-            newArr[i].courses.splice(j, 1);
+        for(let j = 0; j < newArr[i].classes.length; j++) {
+          if(newArr[i].classes[j].title === course.title && newArr[i].classes[j].description === course.description) {
+            newArr[i].classes.splice(j, 1);
             break;
           }
         }
@@ -73,19 +162,7 @@ function SemesterPlan (props) {
     setSchedule(newArr);
   }
 
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/getAllCourses')
-    .then(res => {
-      //console.log('RESPONSE: ')
-      //console.log(res);
-      setClassList(res.data.classes);
-      setIsLoading(false);
-    })
-  }, [])
-
-  //console.log(classList);
-
-  if(isLoading) {
+  if(isLoadingClassList || isLoadingSchedule) {
     return(
       <div>
         <Header></Header>
@@ -104,24 +181,26 @@ function SemesterPlan (props) {
   
   return (
     <div>
-      <Header></Header>
-      <div className="semesterViewPg" style={{margin: "20px"}}>
-        <Container maxWidth="sm" align="center">
-          <Typography variant="h5">
-            Tentative Course Outline
-            <br />
-            Note: This is not a guarantee of any enrollment
-          </Typography>
-        </Container>
+    <Header></Header>
+    <div className="semesterViewPg" style={{margin: "20px"}}>
+      <Container maxWidth="sm" align="center">
+        <Typography variant="h5">
+          Tentative Course Outline
+          <br />
+          Note: This is not a guarantee of any enrollment
+        </Typography>
+      </Container>
+      
+      <div className="sections">
+        <div className="addSem">
+          <Button variant="contained" endIcon={<AddIcon/>} onClick={addSemester}>{"Add Semester"} </Button>
+        </div>
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <div style={{display: "flex", flexDirection: "column", width: "60%"}}>
+    <DragDropContext onDragEnd={onDragEnd}>
+      {schedule.map((available_classes, i) => (
         
-        <div className="sections">
-          <div className="addSem">
-            <Button variant="contained" endIcon={<AddIcon/>} onClick={addSemester}>{"Add Semester"} </Button>
-          </div>
-          <div style={{display: "flex", flexDirection: "row"}}>
-            <div style={{display: "flex", flexDirection: "column", width: "60%"}}>
-              {schedule.map(available_classes => (
-                <Box paddingTop={2} paddingBottom={2}>
+          <Box paddingTop={2} paddingBottom={2}>
                   <Accordion defaultExpanded="True" style={{ boxShadow: "1px 2px 5px grey" }}>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -131,20 +210,34 @@ function SemesterPlan (props) {
                     <Typography variant="h5" style={{marginLeft: "5px"}}>{available_classes.semester}</Typography>
                     </AccordionSummary>
                     <AccordionDetails overflow="auto">
-                      <Box overflow='auto'>
-                        <CurrentClasses 
-                          courses={available_classes.courses}
-                          semester={available_classes.semester}
-                          classList={classList}
-                          handleAddClass={handleAddClass}
-                          handleRemoveClass={handleRemoveClass}
-                        />
-                      </Box>
+                      
+                      <Droppable droppableId={available_classes.semester} key={i} direction="horizontal" ignoreContainerClipping={true}>
+                      
+                        {(provided, snapshot) => (
+                          <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
+                            { console.log(available_classes)}
+                            
+                              <CurrentClasses 
+                                courses={available_classes.classes}
+                                semester={available_classes.semester}
+                                classList={classList}
+                                handleAddClass={handleAddClass}
+                                handleRemoveClass={handleRemoveClass}
+                              />
+                            
+                      
+                            {provided.placeholder}
+                          </div>
+                        )}
+                      </Droppable>
                     </AccordionDetails>
                   </Accordion>
                 </Box>
-              ))}
-            </div>
+      ))
+      }
+    
+    </DragDropContext>
+    </div>
             <Box style={{width: "40%", position: "relative", marginLeft: "30px", marginTop: "16px"}} >
               <Requirements/>
             </Box>
