@@ -44,6 +44,61 @@ module.exports = function(app, client) {
       })
   });
 
+  // Desc   -> Adds a course to a specific schedule of a user
+  // Params -> none
+  // Body   -> schedule id, semester, course name & number
+  // Result -> Adds course to schedule
+  app.put('/api/addCourseSchedule', (req, res) => {
+    dbReports.collection('Schedules').findOne({'schedule_id':req.body.schedule_id})
+      .then(doc => {
+        if (doc != null) {
+          let schedule = doc.schedule
+          console.log(schedule)
+          schedule[req.body.semester][req.body.subject].push(req.body.course_num)
+          dbReports.collection('Schedules').update({_id:doc._id}, {$set:{schedule:schedule}}, (err, result) => {
+            if (err) {
+              console.log(err); 
+              res.status(500).json({error: err});
+              return;
+            }
+
+            res.send({status: 'Added Course'});
+          })
+        } else {
+          res.status(401).json({error: 'Schedule not found!'});
+        }
+      })
+  });
+
+  // Desc   -> Deletes a course of a specific schedule
+  // Params -> none
+  // Body   -> schedule id, semester, course name & number
+  // Result -> Course is deleted from schedule
+  app.put('/api/deleteCourseSchedule', (req, res) => {
+    dbReports.collection('Schedules').findOne({'schedule_id':req.body.schedule_id})
+      .then(doc => {
+        if (doc != null) {
+          let schedule = doc.schedule
+          console.log(schedule)
+          let arr = schedule[req.body.semester][req.body.subject]
+          const index = arr.indexOf(req.body.course_num)
+          schedule[req.body.semester][req.body.subject].splice(index, 1)
+
+          dbReports.collection('Schedules').update({_id:doc._id}, {$set:{schedule:schedule}}, (err, result) => {
+            if (err) {
+              console.log(err); 
+              res.status(500).json({error: err});
+              return;
+            }
+
+            res.send({status: 'Deleted Course'});
+          })
+        } else {
+          res.status(401).json({error: 'Schedule not found!'});
+        }
+      })
+  });
+
   // Desc   -> Gets all schedules of a paticular user
   // Params -> email
   // Body   -> none
