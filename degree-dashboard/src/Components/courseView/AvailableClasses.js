@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./AvailableClasses.module.css"
 import { makeStyles, Paper, Card, CardContent, Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 // import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
@@ -42,7 +43,7 @@ const useStyles = makeStyles({
   },
   
   classAvailability: {
-    paddingTop: "10px"
+    paddingTop: "10px",
   },
   
   profInfo: {
@@ -68,11 +69,11 @@ function AvailableClasses ({prof, avail}) {
       </div>
       <section className={styleClasses.buttonContainer}>
           {/* <Link to=""> */}
-            <button className={styleClasses.button}>Teacher Reviews</button>
+            <Button className={styleClasses.button}>Teacher Reviews</Button>
           {/* </Link> */}
 
           {/* <Link to=""> */}
-            <button className={styleClasses.button}>Add to Schedule</button>
+            <Button className={styleClasses.button}>Add to Schedule</Button>
           {/* </Link> */}
         </section> 
     </Paper>

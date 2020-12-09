@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import AvailableClasses from './AvailableClasses'
 import CourseInfo from './CourseInfo'
 import styles from "./CourseView.module.css"
-import Header from "../Header.js"
 import { makeStyles, Paper, Typography } from '@material-ui/core';
 
 const axios = require('axios');
@@ -12,10 +11,13 @@ const useStyles = makeStyles({
     position: 'relative',
     fontFamily: 'sans-serif',
     marginTop: '40px',
+    background: 'none',
+    marginBottom: "50px"
   },
   classTitle: {
     textAlign: 'center',
     fontWeight: "bold",
+    marginTop: "20px"
   },
   sections: {
     display: 'flex',
@@ -47,6 +49,9 @@ const useStyles = makeStyles({
 
 function CourseView (props) {
 
+  console.log(props.subject)
+  console.log(props.number)
+
   const [classes] = useState(props.class_array);
 
   const styleClasses = useStyles();
@@ -77,7 +82,6 @@ function CourseView (props) {
 
   return (
     <>
-      <Header />
       <div className={styleClasses.courseViewPage}>
         <Typography variant="h4" className={styleClasses.classTitle}>{subjectId + " " + courseNum + " - " + title}</Typography>
         <div className={styleClasses.sections}>
