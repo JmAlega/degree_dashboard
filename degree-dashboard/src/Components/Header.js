@@ -10,6 +10,7 @@ import Miner from './images/miner.png';
 import { useHistory } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
+import Logout from './Logout.js'
 
 const theme = createMuiTheme({
   palette: {
@@ -120,17 +121,10 @@ const Header = ({component: Component, ...rest }) => {
                         <Button color={getColor("/course-view")} variant={getVariant("/course-view")} onClick={courseview}>Course Information</Button>
                         <Button color={getColor("/courses")} variant={getVariant("/courses")} onClick={courses}>Courses</Button>
                         <Button color={getColor("/courseoutline")} variant={getVariant("/courseoutline")} onClick={courseoutline}>Course Outline</Button>
-                        {loggedIn ? <IconButton
-
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        color="inherit"
-                        >
-                        <AccountCircle />
-                        </IconButton> :
-                        <Button color="inherit">Login</Button>
-                        }
+                        
+                        {/* When user logouts out they will be rerouted to login page, <Logout/>
+                          includes the button menu for the header */}
+                        <Logout/>
                     </div>
                         
                     </div>
