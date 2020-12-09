@@ -61,18 +61,19 @@ function DropZone() {
       }})
     .then((res) => {
       if (res.status == 200) {
-        // axios.post('http://localhost:8000/api/addSchedule', {
-        //   email: '',
-        //   schedule_name: '',
-        //   schedule: res.schedule,
-        // })
-        // .then((res) => {
-        //   console.log("Finished adding schedule");
-        // })
-        // .catch(err => {
-        //   alert("Please try again. Sections of your required for displaying data was missing.");
-        //   setFileName("");
-        // });
+        // console.log(res.data.schedule);
+        axios.post('http://localhost:8000/api/addSchedule', {
+          email: sessionStorage.getItem('email'),
+          schedule_name: 'Jda3b5 Schedule',
+          schedule: res.data.schedule
+        })
+        .then((result) => {
+          console.log("Finished adding schedule");
+        })
+        .catch(err => {
+          alert("Please try again. Sections of your required for displaying data was missing.");
+          setFileName("");
+        });
         console.log(res.data)
         setfinished(true);
         showProgress(false);

@@ -3,6 +3,44 @@ var ObjectID = require('mongodb').ObjectID
 module.exports = function(app, client) {
   const db = client.db("Subjects");
   
+  // Desc   -> Returns all classes from all collections (subjects)
+  // Params -> none
+  // Body   -> none
+  // Result -> array: JSON
+  app.get('/api/getAllCourses', async (req, res) => {
+    let result = [];
+    let collections = await db.listCollections({}, {nameOnly: true}).toArray();
+    let subjects = collections.map(collection => {return collection.name})
+    let waitFor = subjects.length;
+    console.log(subjects.sort());
+    subjects.forEach(async (subject) => {
+      let dbClasses = await db.collection(subject).find({}, {projection: {_id: 0, subjectLong: 1, subjectId: 1, number: 1, title: 1}}).toArray();
+      let classes = {};
+      await dbClasses.forEach(docClass => {
+        if(!classes[docClass.subjectLong]) {
+          classes[docClass.subjectLong] = [];
+          // console.log(docClass.subjectLong+': '+classes[docClass.subjectLong].length);
+        }
+        classes[docClass.subjectLong].push({
+          number: docClass.subjectId + ' ' + docClass.number,
+          title: docClass.title
+        });
+        if(dbClasses[dbClasses.length-1].number === docClass.number && dbClasses[dbClasses.length-1].title === docClass.title) {
+          console.log('Pushed ' + subject);
+          result.push(classes);
+          waitFor = waitFor - 1;
+          if(subject === subjects[subjects.length-1]) {
+            
+            console.log("GET /api/getAllCourses");
+            //console.log(classes);
+            res.send({classes: result});
+          }
+        }          
+      });
+    }) 
+  });
+
+
   // Desc   -> Returns all documents within a collection
   // Params -> string: subjectId
   // Body   -> none

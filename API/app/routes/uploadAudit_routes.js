@@ -33,7 +33,6 @@ module.exports = function(app, client) {
         let audit = readAudit(file);
         console.log("finished parsing");
         let auditRequirements = { requirements: audit.requirements };
-        let auditSchedule = { schedule: audit.schedule };
         db.collection('Users').findOne({'email':req.body.email})
           .then(doc => {
             db.collection('Users').update({_id:doc._id}, {$set:{degree_audit:auditRequirements}}, (err, result) => {
@@ -46,7 +45,7 @@ module.exports = function(app, client) {
               res.send({
                 status: true,
                 message: "Audit uploaded",
-                schedule: auditSchedule
+                schedule: audit.schedule
               });
             }) 
           })
@@ -134,7 +133,8 @@ function getClassesTaken(requirement, reqObj) {
     var courseTitle = takenClass.querySelector("td.course").textContent.trim().replace(/\s+/g, ' '); //grabs MATH 1214
     console.log('starting: ' + courseTitle);
     var firstDigit = courseTitle.search(/\d/); //looks for the 1
-    courseTitle = courseTitle.substring(0, firstDigit).trim() + ' ' + courseTitle.substring(firstDigit).trim(); //in cases of COMP SCI1500, return COMP SCI 1500
+    var subjectId = courseTitle.substring(0, firstDigit).trim();
+    var number = courseTitle.substring(firstDigit).trim(); //in cases of COMP SCI1500, return COMP SCI 1500
     var semesterTerm = takenClass.querySelector("td.term").textContent.trim().replace(/\s+/g, ' ').substring(0,2); //returns FS from FS18
     var semesterYear = takenClass.querySelector("td.term").textContent.trim().replace(/\s+/g, ' ').substring(2); //return 18 from FS18
     var grade = takenClass.querySelector("td.grade").textContent.trim().replace(/\s+/g, ' '); //returns A|B|C|D|F|IP|EXE|EXT|T
@@ -150,7 +150,7 @@ function getClassesTaken(requirement, reqObj) {
         // console.log('created exempted classes');
         const exemptedClassesList = reqObj.schedule.filter(e => e.semester === 'Exempted Classes');
         if(exemptedClassesList.length === 1) {
-          exemptedClassesList[0].classes.push(courseTitle); 
+          exemptedClassesList[0].classes.push({subjectId: subjectId, number: number}); 
         }
       } else if(semesterTerm === "FS") {
         if(reqObj.schedule.filter(e => e.semester === 'Fall '+semesterYear).length === 0) {
@@ -161,7 +161,7 @@ function getClassesTaken(requirement, reqObj) {
         }
         const fallClassList = reqObj.schedule.filter(e => e.semester === 'Fall '+semesterYear);
         if(fallClassList.length === 1) {
-          fallClassList[0].classes.push(courseTitle);
+          fallClassList[0].classes.push({subjectId: subjectId, number: number});
         }
       } else if(semesterTerm === "SP") {
         if(reqObj.schedule.filter(e => e.semester === 'Spring '+semesterYear).length === 0) {
@@ -172,7 +172,7 @@ function getClassesTaken(requirement, reqObj) {
         }
         const springClassList = reqObj.schedule.filter(e => e.semester === 'Spring '+semesterYear);
         if(springClassList.length === 1) {
-          springClassList[0].classes.push(courseTitle);
+          springClassList[0].classes.push({subjectId: subjectId, number: number});
         }
       } else if(semesterTerm === "SS") {
         if(reqObj.schedule.filter(e => e.semester === 'Summer '+semesterYear).length === 0) {
@@ -183,7 +183,7 @@ function getClassesTaken(requirement, reqObj) {
         }
         const summerClassList = reqObj.schedule.filter(e => e.semester === 'Summer '+semesterYear);
         if(summerClassList.length === 1) {
-          summerClassList[0].classes.push(courseTitle);
+          summerClassList[0].classes.push({subjectId: subjectId, number: number});
           //console.log('pushed ' + courseTitle);
         }
       }
