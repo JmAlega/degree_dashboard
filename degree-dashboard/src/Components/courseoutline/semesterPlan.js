@@ -18,7 +18,7 @@ const reorder = (list, startIndex, endIndex) => {
   console.log(list);
   console.log(startIndex);
   console.log(endIndex);
-  const result = Array.from(list.courses);
+  const result = Array.from(list.classes);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
 
@@ -36,10 +36,12 @@ const move = (source, destination, droppableSource, droppableDestination, sInd, 
   console.log(droppableSource);
   console.log("dropDest");
   console.log(droppableDestination);
+  console.log('SOURCE')
   console.log(source);
+  console.log('DESTINATION')
   console.log(destination);
-  const sourceClone = Array.from(source.courses);
-  const destClone = Array.from(destination.courses);
+  const sourceClone = Array.from(source.classes);
+  const destClone = Array.from(destination.classes);
   const [removed] = sourceClone.splice(droppableSource.index, 1);
 
   destClone.splice(droppableDestination.index, 0, removed);
@@ -65,14 +67,21 @@ const useStyles = makeStyles((theme) => ({
 
 function SemesterPlan (props) {
   
-  const [schedule, setSchedule] = useState(props.schedule_array);
+  const [schedule, setSchedule] = useState();
   const [classList, setClassList] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingClassList, setIsLoadingClassList] = useState(true);
+  const [isLoadingSchedule, setIsLoadingSchedule] = useState(true);
   const classes = useStyles();
+  const email = sessionStorage.getItem('email');
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:8000/api/ge')
-  // })
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/getSchedules/'+email)
+    .then(res => {
+      console.log(res.data[0].schedule);
+      setSchedule(res.data[0].schedule);
+      setIsLoadingSchedule(false);
+    })
+  }, [])
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/getAllCourses')
@@ -80,7 +89,7 @@ function SemesterPlan (props) {
       //console.log('RESPONSE: ')
       //console.log(res);
       setClassList(res.data.classes);
-      setIsLoading(false);
+      setIsLoadingClassList(false);
     })
   }, [])
 
@@ -100,14 +109,14 @@ function SemesterPlan (props) {
     if (sInd === dInd) {
       const items = reorder(schedule[sInd], source.index, destination.index);
       const newState = [...schedule];
-      newState[sInd].courses = items;
+      newState[sInd].classes = items;
       console.log("here");
       setSchedule(newState);
     } else {
       const result = move(schedule[sInd], schedule[dInd], source, destination, sInd, dInd);
       const newState = [...schedule];
-      newState[sInd].courses = result[sInd];
-      newState[dInd].courses = result[dInd];
+      newState[sInd].classes = result[sInd];
+      newState[dInd].classes = result[dInd];
       console.log("there");
       console.log(newState);
       setSchedule(newState);
@@ -118,7 +127,7 @@ function SemesterPlan (props) {
     setSchedule(oldSchedule => [...oldSchedule, 
       { 
         semester: 'New semester',
-        courses: [ {'title': 'Add Course', 'description': ''},]
+        classes: [ {'title': 'Add Course', 'description': ''},]
       }]
     );
   }
@@ -130,7 +139,7 @@ function SemesterPlan (props) {
     let newArr = [...schedule];
     for(let i = 0; i < schedule.length; i++) {
       if(schedule[i].semester === semester) {
-        newArr[i].courses.push(course);
+        newArr[i].classes.push(course);
         break;
       }
     }
@@ -141,9 +150,9 @@ function SemesterPlan (props) {
     let newArr = [...schedule];
     for(let i = 0; i < newArr.length; i++) {
       if(newArr[i].semester === semester) {
-        for(let j = 0; j < newArr[i].courses.length; j++) {
-          if(newArr[i].courses[j].title === course.title && newArr[i].courses[j].description === course.description) {
-            newArr[i].courses.splice(j, 1);
+        for(let j = 0; j < newArr[i].classes.length; j++) {
+          if(newArr[i].classes[j].title === course.title && newArr[i].classes[j].description === course.description) {
+            newArr[i].classes.splice(j, 1);
             break;
           }
         }
@@ -153,9 +162,7 @@ function SemesterPlan (props) {
     setSchedule(newArr);
   }
 
-  //console.log(classList);
-
-  if(isLoading) {
+  if(isLoadingClassList || isLoadingSchedule) {
     return(
       <div>
         <Header></Header>
@@ -211,7 +218,7 @@ function SemesterPlan (props) {
                             { console.log(available_classes)}
                             
                               <CurrentClasses 
-                                courses={available_classes.courses}
+                                courses={available_classes.classes}
                                 semester={available_classes.semester}
                                 classList={classList}
                                 handleAddClass={handleAddClass}
