@@ -26,24 +26,39 @@ import ChooseCourse from './ChooseCourse';
 
 }));
 
-function CurrentClasses ({semester, courses}) {
+function CurrentClasses (props) {
 
   var buttonDescriptions = new Array(6);
   var i;
   
   const classes = useStyles();
   const [openPopup, setOpenPopup] = useState(false);
+
+  const handleOpenPopup = () => {
+    console.log('OPENING DIALOG');
+    setOpenPopup(true);
+  }
+
+  const handleAddClass = (number, title) => {
+    console.log('IN CURRENT CLASSES: ' + number + title);
+    props.handleAddClass({title: number, description: title}, props.semester)
+  }
   
+  const handleRemoveClass = (number, title) => {
+    console.log(number + title);
+    props.handleRemoveClass({title: number, description: title}, props.semester)
+  }
+
   return (
     <div style={{display: "flex", flexDirection: "row"}}>
-      <div style={{display: "flex", flexDirection: "row"}} onClick={() => setOpenPopup(true)}>
-        {courses.map(course => 
+      <div style={{display: "flex", flexDirection: "row"}}>
+        {props.courses.map(course => 
           <Box paddingRight={2} paddingBottom={2}>
-            <Card className={classes.root} onClick={course.title === "Add Course" ? () => setOpenPopup(true) : () => setOpenPopup(false)}>
+            <Card className={classes.root} onClick={course.title === 'Add Course' ? handleOpenPopup : null}>
               <CardHeader
                 action={
                   course.title !== "Add Course" && 
-                  <IconButton aria-label="settings">
+                  <IconButton aria-label="settings" onClick={() => handleRemoveClass(course.title, course.description)}>
                     <CloseIcon />
                   </IconButton>
                 }
@@ -58,7 +73,7 @@ function CurrentClasses ({semester, courses}) {
           </Box>
         )}
       </div>
-      {openPopup && <ChooseCourse open={true} handleClose={setOpenPopup} semester={semester}/>}
+      <ChooseCourse open={openPopup} handleClose={setOpenPopup} handleAddClass={handleAddClass} semester={props.semester} classList={props.classList}/>
     </div>
   )
 }

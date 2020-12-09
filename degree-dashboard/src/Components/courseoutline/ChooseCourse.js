@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import CourseCategory from './choosecoursemodal/CourseCategory';
+
+const axios = require('axios');
 
 const sampleData = [
     {"Humanities": [
@@ -22,35 +24,24 @@ const sampleData = [
 ]
 
 function ChooseCourse(props) {
-  const [open, setOpen] = React.useState(props.open);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-    props.handleClose(false);
-  };
-
-  return (
-    <div>
-        {/* <Button variant="contained" color="primary" onClick={handleClickOpen}>
-            Choose Courses    
-        </Button> */}
-        <Dialog 
-            onClose={handleClose} 
-            aria-labelledby="customized-dialog-title" 
-            open={open}   
-            fullWidth={true}
-            maxWidth={'md'}
-        >
-            <DialogTitle id="customized-dialog-title">{props.semester}</DialogTitle>
-            <DialogContent dividers>
-                {sampleData.map (category => <CourseCategory category={category}/>) }
-            </DialogContent>
-        </Dialog>
-    </div>
-  );
+    //console.log(props);
+    return (
+        <div>
+            <Dialog 
+                open={props.open}
+                onClose={() => props.handleClose(false)} 
+                onBackdropClick={() => props.handleClose(false)}
+                aria-labelledby="customized-dialog-title" 
+                fullWidth={true}
+                maxWidth={'md'}
+            >
+                <DialogTitle id="customized-dialog-title">{props.semester}</DialogTitle>
+                <DialogContent dividers>
+                    {props.classList.map(category => <CourseCategory handleAddClass={props.handleAddClass} category={category}/>) }
+                </DialogContent>
+            </Dialog>
+        </div>
+    );
 }
 
 export default ChooseCourse;
