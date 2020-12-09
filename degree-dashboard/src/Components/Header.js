@@ -65,7 +65,7 @@ const Header = ({component: Component, ...rest }) => {
     // These functions load the correct route when the button in the header is pressed.
     const dash = () => {
       //console.log(history.location);
-      history.push('dashboard');
+      history.push('courseoutline');
     }
     const schedule = () => {
       history.push('schedule');
@@ -117,10 +117,10 @@ const Header = ({component: Component, ...rest }) => {
                     <div className={classes.buttonrow}>
                     <div >
                         <Button color={getColor("/dashboard")} variant={getVariant("/dashboard")} onClick={dash}>Dashboard</Button>
-                        <Button color={getColor("/schedule")} variant={getVariant("/schedule")} onClick={schedule}>Schedule</Button>
+                        {/*<Button color={getColor("/schedule")} variant={getVariant("/schedule")} onClick={schedule}>Schedule</Button>
                         <Button color={getColor("/course-view")} variant={getVariant("/course-view")} onClick={courseview}>Course Information</Button>
                         <Button color={getColor("/courses")} variant={getVariant("/courses")} onClick={courses}>Courses</Button>
-                        <Button color={getColor("/courseoutline")} variant={getVariant("/courseoutline")} onClick={courseoutline}>Course Outline</Button>
+                        <Button color={getColor("/courseoutline")} variant={getVariant("/courseoutline")} onClick={courseoutline}>Course Outline</Button>*/}
                         
                         {/* When user logouts out they will be rerouted to login page, <Logout/>
                           includes the button menu for the header */}

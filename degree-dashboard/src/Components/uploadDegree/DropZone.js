@@ -111,7 +111,7 @@ function DropZone() {
         </div>
       }
     </div>
-    {navigate && <Redirect to="/dashboard" />}
+    {navigate && <Redirect to="/courseoutline" />}
     </>
     
   )
