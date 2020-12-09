@@ -14,12 +14,9 @@ export default function LinearDeterminate() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
+      setProgress(() => {
+        const diff = 100;
+        return diff
       });
     }, 500);
 

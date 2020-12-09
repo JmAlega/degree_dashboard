@@ -1,26 +1,81 @@
 import React from 'react';
 import styles from "./AvailableClasses.module.css"
+import { makeStyles, Paper, Card, CardContent, Typography } from '@material-ui/core';
 // import { Link } from 'react-router-dom'
 
+const useStyles = makeStyles({
+  button: {
+    backgroundColor: "white",
+    borderRadius: "4px",
+    border: "none",
+    boxShadow: "1px 2px 3px grey",
+    margin: "10px",
+    textAlign: "left",
+    height: "40px",
+    fontWeight: "bold",
+    "&:hover": {
+      backgroundColor: "lightgray",
+      cursor: "pointer"
+    },
+    "&:active, &:focus": {
+      outline: "none",
+      "&:active": {
+        boxShadow: "none",
+        border: "none"
+      }
+    }
+  },
+  
+  buttonContainer: {
+    display: "flex",
+    flexDirection: "column",
+    padding: "10px",
+    width: "35%",
+    boxShadow: "none",
+    backgroundColor: "white",
+  },
+  
+  classes: {
+    display: "flex",
+    flexDirection: "row",
+    margin: "10px",
+  },
+  
+  classAvailability: {
+    paddingTop: "10px"
+  },
+  
+  profInfo: {
+    width: "60%",
+    display: "flex",
+    flexDirection: "column",
+    margin: "20px",
+    border: "none",
+  },
+  
+  professorName: {
+    fontWeight: "bold"
+  }
+})
+
 function AvailableClasses ({prof, avail}) {
+  const styleClasses = useStyles();
   return (
-    <div className={styles.classes}>
-      <section className={styles.profInfo}>
-        <h3 className={styles.professorName}>{prof}</h3>
-        <p className={styles.classAvailability}>{avail}</p>
-      </section>
+    <Paper className={styleClasses.classes}>
+      <div className={styleClasses.profInfo}>
+        <Typography variant="h5" className={styleClasses.professorName}>{prof}</Typography>
+        <Typography variant="body2" className={styleClasses.classAvailability}>{avail}</Typography>
+      </div>
+      <section className={styleClasses.buttonContainer}>
+          {/* <Link to=""> */}
+            <button className={styleClasses.button}>Teacher Reviews</button>
+          {/* </Link> */}
 
-      <section className={styles.buttons}>
-        {/* <Link to=""> */}
-          <button className={styles.reviewButton}>Teacher Reviews</button>
-        {/* </Link> */}
-
-        {/* <Link to=""> */}
-          <button className={styles.addButton}>Add to Schedule</button>
-        {/* </Link> */}
-      </section>
-    </div>
+          {/* <Link to=""> */}
+            <button className={styleClasses.button}>Add to Schedule</button>
+          {/* </Link> */}
+        </section> 
+    </Paper>
   )
 }
-//
 export default AvailableClasses;

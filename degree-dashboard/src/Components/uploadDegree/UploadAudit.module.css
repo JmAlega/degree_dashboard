@@ -51,6 +51,7 @@
   margin-bottom: 200px;
   margin-left: 90px;
   margin-right: 90px;
+  margin-top: 0px;
 }
 
 .fileName {
@@ -58,7 +59,7 @@
   font-weight: bold;
   text-align: left;
   margin-left: 90px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .dropText {

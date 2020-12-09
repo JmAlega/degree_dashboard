@@ -1,34 +1,105 @@
-import React, {useState} from 'react'
-import { useDropzone } from 'react-dropzone'
-import styles from "./UploadAudit.module.css"
+import React, { useState, useEffect, useRef } from 'react';
+import { useDropzone } from 'react-dropzone';
+import styles from "./UploadAudit.module.css";
+import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearDeterminate from './LinearDeterminate.js';
+import { makeStyles, Button } from '@material-ui/core';
+import { Link, Redirect } from 'react-router-dom';
+const axios = require('axios');
+
+const useStyles = makeStyles({
+  plan: {
+    width: "200px",
+    height: "45px",
+    margin: "15px",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: "large",
+    borderRadius: "4px",
+    border: "none",
+    boxShadow: "1px 2px 5px grey",
+    backgroundColor: "rgb(233, 233, 233)",
+    "&:hover": {
+      // backgroundColor: "lightgray",
+      transform: "scale(1.05)",
+      cursor: "pointer"
+    },
+    "&:active, &:focus": {
+      outline: "none",
+      "&:active": {
+        boxShadow: "none",
+        border: "none",
+      }
+    }
+  },
+})
 
 function DropZone() {
-  const [files, setFiles] = useState([])
+  const styleClasses = useStyles();
 
-  const {getRootProps, getInputProps} = useDropzone({
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) => Object.assign(file, {
-          preview: URL.createObjectURL(file)
-        }))
-      )
-    }
-  })
+  const [progress, showProgress] = useState(false);
+  const [finished, setfinished] = useState(false);
+  const [navigate, setNavigate] = useState(false);
 
-  const file = files.map((file) => (
-    <div key={file.name}>
-      {file.name}
-    </div>
-  ))
+  const [fileName, setFileName] = useState('');
+  
+  const uploadFile = ({target: {files} }) => {
+    var data = new FormData();
+    var file = document.getElementById("audit").files[0];
+    setFileName(file.name);
+    data.append('email' , "userEmail@umsystm.edu");
+    data.append('audit', file)
+    handleSubmit(data);
+  }
+
+  const handleSubmit = (data) => {
+    axios.post('http://localhost:8000/api/uploadAudit', data, {
+      onUploadProgress: (progressEvent) => {
+        let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        console.log(`${percentCompleted}`);
+        showProgress(true);
+      }})
+    .then((res) => {
+      if (res.status == 200) {
+        console.log(res.data)
+        setfinished(true);
+        showProgress(false);
+        handleNavigate();
+      } else {
+        console.log(res.error);
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      alert("Please try again. Remember to upload your audit as an HTML form");
+      setFileName("");
+    });
+  }
+
+  const handleNavigate = () => {
+    setTimeout(() => setNavigate(true), 2500);
+  }
+
+  const {getRootProps, getInputProps} = useDropzone({uploadFile})
 
   return (
-    <div>
+    <>
+    <div onChange={uploadFile}>
       <div {...getRootProps()} className={styles.dropArea}>
-        <input {...getInputProps()} />
-        <h2 className={styles.dropText}>DRAG FILE HERE OR <span className={styles.browse}>BROWSE</span></h2>
+        <input {...getInputProps()} id="audit"  />
+        <h2 className={styles.dropText}>CLICK HERE TO <span className={styles.browse}>BROWSE</span></h2>
       </div>
-      <div className={styles.fileName}>{file}</div>
+      <div className={styles.fileName}>{fileName}</div> 
+      {
+        fileName.length > 0 &&
+        <div className={styles.progress}>
+          {progress && <LinearProgress />}
+          {finished && <LinearDeterminate/>}
+        </div>
+      }
     </div>
+    {navigate && <Redirect to="/dashboard" />}
+    </>
     
   )
 
