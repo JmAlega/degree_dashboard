@@ -50,48 +50,48 @@ function CurrentClasses (props) {
 
   const handleAddClass = (number, title) => {
     console.log('IN CURRENT CLASSES: ' + number + title);
-    props.handleAddClass({title: number, description: title}, props.semester)
+    props.handleAddClass({title: number, description: title}, props.semester);
   }
   
   const handleRemoveClass = (number, title) => {
     console.log(number + title);
-    props.handleRemoveClass({title: number, description: title}, props.semester)
+    props.handleRemoveClass({title: number, description: title}, props.semester);
   }
 
   return (
     <div style={{display: "flex", flexDirection: "row"}}>
       <div style={{display: "flex", flexDirection: "row"}}>
         {props.courses.map((course, index) => 
-           <Draggable draggableId={course.title} key={course.title} index={index}>
-           {(provided, snapshot) => (
-             <div
-               ref={provided.innerRef}
-               {...provided.draggableProps}
-               {...provided.dragHandleProps}
-               style={getItemStyle(
-                snapshot.isDragging,
-                provided.draggableProps.style
-              )}
-             >
-               <Box paddingRight={2} paddingBottom={2}>
-            <Card className={classes.root} onClick={course.title === 'Add Course' ? handleOpenPopup : null}>
-              <CardHeader
-                action={
-                  course.title !== "Add Course" && 
-                  <IconButton aria-label="settings" onClick={() => handleRemoveClass(course.title, course.description)}>
-                    <CloseIcon />
-                  </IconButton>
-                }
-                title={course.title}
-                titleTypographyProps={{variant: "body1"}}
-                style={{ paddingBottom: "0px"}}
-                />
-              <CardContent style={{paddingBottom: "0px", paddingTop: "0px"}}>
-                <Typography variant="caption" color="textSecondary">{course.description}</Typography>
-              </CardContent>
-            </Card>
-          </Box>
-             </div>
+          <Draggable draggableId={course.title} key={course.title} index={index}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                style={getItemStyle(
+                  snapshot.isDragging,
+                  provided.draggableProps.style
+                )}
+              >
+              <Box paddingRight={2} paddingBottom={2}>
+                <Card className={classes.root} onClick={course.title === 'Add Course' ? handleOpenPopup : null}>
+                  <CardHeader
+                    action={
+                      course.title !== "Add Course" && 
+                      <IconButton aria-label="settings" onClick={() => handleRemoveClass(course.title, course.description)}>
+                        <CloseIcon />
+                      </IconButton>
+                    }
+                    title={course.title}
+                    titleTypographyProps={{variant: "body1"}}
+                    style={{ paddingBottom: "0px"}}
+                  />
+                  <CardContent style={{paddingBottom: "0px", paddingTop: "0px"}}>
+                    <Typography variant="caption" color="textSecondary">{course.description}</Typography>
+                  </CardContent>
+                </Card>
+              </Box>
+            </div>
            )}
          </Draggable>
         )}

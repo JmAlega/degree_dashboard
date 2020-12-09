@@ -70,7 +70,19 @@ function SemesterPlan (props) {
   const [isLoading, setIsLoading] = useState(true);
   const classes = useStyles();
 
+  // useEffect(() => {
+  //   axios.get('http://localhost:8000/api/ge')
+  // })
 
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/getAllCourses')
+    .then(res => {
+      //console.log('RESPONSE: ')
+      //console.log(res);
+      setClassList(res.data.classes);
+      setIsLoading(false);
+    })
+  }, [])
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -101,8 +113,6 @@ function SemesterPlan (props) {
       setSchedule(newState);
     }
   }
-
-  
 
   const addSemester = () => {
     setSchedule(oldSchedule => [...oldSchedule, 
@@ -142,16 +152,6 @@ function SemesterPlan (props) {
     }
     setSchedule(newArr);
   }
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/getAllCourses')
-    .then(res => {
-      //console.log('RESPONSE: ')
-      //console.log(res);
-      setClassList(res.data.classes);
-      setIsLoading(false);
-    })
-  }, [])
 
   //console.log(classList);
 
@@ -213,6 +213,9 @@ function SemesterPlan (props) {
                               <CurrentClasses 
                                 courses={available_classes.courses}
                                 semester={available_classes.semester}
+                                classList={classList}
+                                handleAddClass={handleAddClass}
+                                handleRemoveClass={handleRemoveClass}
                               />
                             
                       
