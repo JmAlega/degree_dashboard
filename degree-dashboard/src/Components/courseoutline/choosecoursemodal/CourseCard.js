@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card  from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function CourseCard(props) {
-
     function addCourseToSchedule(title, number) {
         // TODO: Call backend function to add course to schedule.
         console.log(title + number);
