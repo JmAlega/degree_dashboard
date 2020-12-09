@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card  from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
@@ -21,11 +21,10 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function CourseCard(props) {
-
-    function addCourseToSchedule() {
+    function addCourseToSchedule(title, number) {
         // TODO: Call backend function to add course to schedule.
-        console.log("Adding course to schedule: " + props.course.number);
-
+        console.log(title + number);
+        props.handleAddClass(number, title)
     }
 
     const [open, setOpen] = useState(false);
@@ -42,17 +41,17 @@ function CourseCard(props) {
     return (
         <Box paddingBottom={2} paddingRight={2}>
             <Card className={classes.root}> 
-              <CardHeader
-                  action={<IconButton onClick={addCourseToSchedule}> <AddIcon /> </IconButton>}
-                  title={props.course.number}
-                  titleTypographyProps={{"variant": "h6"}}
-              />
-              <CardContent>
-                  <Typography color="textSecondary">
-                      {props.course.title}
-                  </Typography>
-              </CardContent>
-              <CardActions>
+                <CardHeader
+                    action={<IconButton onClick={() => addCourseToSchedule(props.course.title, props.course.number)}><AddIcon /></IconButton>}
+                    title={props.course.number}
+                    titleTypographyProps={{"variant": "h6"}}
+                />
+                <CardContent>
+                    <Typography color="textSecondary">
+                        {props.course.title}
+                    </Typography>
+                </CardContent>
+                <CardActions>
                 <Button size="small" color="primary" onClick={handleClickOpen}>Class Information</Button>
                 <Dialog 
                   open={open}

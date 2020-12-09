@@ -12,7 +12,7 @@ import Box from '@material-ui/core/Box';
 function CourseCategory(props) {
     var header = Object.keys(props.category)[0];
     var courses = props.category[header];
-    console.log('in CourseCategory: ', header);
+    //console.log('in CourseCategory: ', header);
 
     return (
         <Accordion overflow='hidden'>
@@ -21,7 +21,7 @@ function CourseCategory(props) {
             </AccordionSummary>
             <AccordionDetails>
                 <Box overflow='auto' display='flex'>
-                    {courses.map(course => <CourseCard course={course}/>)}
+                    {courses.map(course => <CourseCard handleAddClass={props.handleAddClass} course={course}/>)}
                 </Box>
             </AccordionDetails>
         </Accordion>

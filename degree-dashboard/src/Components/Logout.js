@@ -55,6 +55,7 @@ export default function CustomizedMenus() {
   
   const handleLogout = () => {
     sessionStorage.setItem('loggedIn', 'false');
+    sessionStorage.setItem('email', null);
     history.push('/login')
   };
   return (
