@@ -47,7 +47,8 @@ export default function Login() {
     .then((res) =>{
       if (res.status === 200) {
         console.log('User Logged In Successfully');
-        sessionStorage.setItem('loggedIn', 'true')
+        sessionStorage.setItem('loggedIn', 'true');
+        sessionStorage.setItem('email', email);
         history.push('/upload-audit')
       } else {
         console.log(res.error);
