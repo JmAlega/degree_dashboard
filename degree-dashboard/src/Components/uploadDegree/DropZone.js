@@ -47,7 +47,7 @@ function DropZone() {
     var data = new FormData();
     var file = document.getElementById("audit").files[0];
     setFileName(file.name);
-    data.append('email' , "userEmail@umsystm.edu");
+    data.append('email' , "jda3b5@umsystem.edu");
     data.append('audit', file)
     handleSubmit(data);
   }
@@ -61,6 +61,18 @@ function DropZone() {
       }})
     .then((res) => {
       if (res.status == 200) {
+        // axios.post('http://localhost:8000/api/addSchedule', {
+        //   email: '',
+        //   schedule_name: '',
+        //   schedule: res.schedule,
+        // })
+        // .then((res) => {
+        //   console.log("Finished adding schedule");
+        // })
+        // .catch(err => {
+        //   alert("Please try again. Sections of your required for displaying data was missing.");
+        //   setFileName("");
+        // });
         console.log(res.data)
         setfinished(true);
         showProgress(false);
