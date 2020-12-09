@@ -58,53 +58,51 @@ const options = [
   '2030',
 ];
 
+const seasons = [
+  "Fall",
+  "Spring",
+  "Summer"
+];
+
+const years = ["2017", "2018", "2019","2020", "2021", "2022"];
+
 const ITEM_HEIGHT = 36;
 
 
 
 function SemesterPlan (props) {
-
-	this.state = {
-	  season: 'Fall'
-  };
-  this.handleInputChange = this.handleInputChange.bind(this);
-  
-
   const [schedule, setSchedule] = useState(props.schedule_array);
   const classes = useStyles();
 
   const addSemester = () => {
-    setSchedule(oldSchedule => [...oldSchedule, 
-      { 
-        semester: 'New semester',
-        courses: [ {'title': 'Add Course', 'description': ''},]
-      }]
-    );
+    var newSchedule = [...schedule];
+    newSchedule.push({ 
+      semester: 'New semester',
+      courses: [ {'title': 'Add Course', 'description': ''},]
+    })
+    setSchedule(newSchedule);
   }
   
   function handleInputChange(event){
+    event.stopPropagation();
     const target = event.target;
     const value = target.value;
     const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
+    var newSchedule = [...schedule];
+    newSchedule[name].semester.season = value
+    setSchedule(newSchedule);
   }
   
-  const [seas, setSeason] = useState(props.schedule_array.season);
-
-  const handleChange = (event) => {
-    setSeason(event.target.value);
-  };
-  
-  const [year, setYear] = useState(props.schedule_array.year);
   
  const handleChangeYr = (event) => {
-    setYear(event.target.value);
+    event.stopPropagation();
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    var newSchedule = [...schedule];
+    newSchedule[name].semester.year = value
+    setSchedule(newSchedule);
   };
-  
-
   
    return (
     <div>
@@ -137,26 +135,23 @@ function SemesterPlan (props) {
 							<Select
 							  labelId="demo-simple-select-label"
 							  id="demo-simple-select"
-							  name="season"
-							  value={this.state.season}
-							  onChange={this.handleInputChange}
+							  name={index}
+							  value={schedule[index].semester.season}
+							  onClick={handleInputChange}
 							>
-							  <MenuItem value={10}>Spring</MenuItem>
-							  <MenuItem value={20}>Summer</MenuItem>
-							  <MenuItem value={30}>Fall</MenuItem>
+                {seasons.map( season => (<MenuItem value={season}>{season}</MenuItem>))}
 							</Select>
 						  </FormControl>
 					<FormControl className={classes.formControl}>
 							<InputLabel id="demo-simple-select-label">Year</InputLabel>
 							<Select
 							  labelId="demo-simple-select-label"
-							  id="demo-simple-select"
-							  value={year}
-							  onChange={handleChangeYr}
+                id="demo-simple-select"
+                name={index}
+							  value={schedule[index].semester.year}
+							  onClick={handleChangeYr}
 							>
-							  <MenuItem value={10}>2016</MenuItem>
-							  <MenuItem value={20}>2017</MenuItem>
-							  <MenuItem value={30}>2018</MenuItem>
+							  {years.map( year => (<MenuItem value={year}>{year}</MenuItem>))}
 							</Select>
 						  </FormControl>
 
