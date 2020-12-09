@@ -33,7 +33,6 @@ module.exports = function(app, client) {
         let audit = readAudit(file);
         console.log("finished parsing");
         let auditRequirements = { requirements: audit.requirements };
-        let auditSchedule = { schedule: audit.schedule };
         db.collection('Users').findOne({'email':req.body.email})
           .then(doc => {
             db.collection('Users').update({_id:doc._id}, {$set:{degree_audit:auditRequirements}}, (err, result) => {
@@ -46,7 +45,7 @@ module.exports = function(app, client) {
               res.send({
                 status: true,
                 message: "Audit uploaded",
-                schedule: auditSchedule
+                schedule: audit.schedule
               });
             }) 
           })
