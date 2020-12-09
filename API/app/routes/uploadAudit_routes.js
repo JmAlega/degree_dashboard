@@ -11,7 +11,7 @@ module.exports = function(app, client) {
   // Body   -> TYPE: form-data
   //           key: 'audit' value(file): degree_audit html file
   //           key: 'email' value(text): email
-  // Result -> Degree audit is populated in databse
+  // Result -> Degree audit is populated in database
   app.post('/api/uploadAudit', async (req, res) => {
     try {
       if(!req.files) {
@@ -57,8 +57,30 @@ module.exports = function(app, client) {
     } catch(err) {
       res.status(500).send(err);
     }
-  })
+  });
+  
+  // Desc   -> Gets degree audit to the database for a given user
+  // Params -> none
+  // Body   -> email:
+  // Result -> Returns requirements array
+  app.get('/api/getAudit/:email', async (req, res) => {
+    console.log("EMAIL: " + req.params.email);
+    try{
+      db.collection('Users').findOne({email:req.params.email}, {projection: {_id: false, degree_audit: true}})
+        .then(doc => {
+          res.send(doc.degree_audit);
+          console.log("GET /api/getAudit/"+ req.params.email);
+        })
+        .catch(err => {
+          res.send(err);
+        })
+    } catch(err) {
+      res.status(500).send(err);
+    }
+  });
 }
+
+
 
 function readAudit (file) {
   var htmlRegex = new RegExp("html", "i");
@@ -220,6 +242,7 @@ function printSubReqs(subRequirement, subReqObj, singleSubReq) {
   if(subRequirement.querySelector(".subreqBody .subreqTitle")) {
     subreqTitle = subRequirement.querySelector(".subreqBody .subreqTitle").textContent.trim();
   } else if (subReqObj.subGroups.length > 0) {
+    /* set from math req 14 */
     subreqTitle = subReqObj.subGroups[subReqObj.subGroups.length-1].subGroupTitle.trim();
   } else {
     /* set from math req 16 */
@@ -335,6 +358,8 @@ function printSubReqs(subRequirement, subReqObj, singleSubReq) {
   var alternative = subRequirement.querySelector(".subreqNumber").textContent.match(altCourseRegex) ? true : false;
   
   if(alternative) {
+    currSubReqObj.subGroupTitle = subReqObj.subGroups[subReqObj.subGroups.length-1].subGroupTitle === currSubReqObj.subGroupTitle ? 
+                                    currSubReqObj.subGroupTitle + " ALTERNATIVE" : currSubReqObj.subGroupTitle;
     subReqObj.subGroups[subReqObj.subGroups.length-1].alternative.push(currSubReqObj);
   } else {
     subReqObj.subGroups.push(currSubReqObj);
