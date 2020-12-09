@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Box from '@material-ui/core/Box';
 import ChooseCourse from './ChooseCourse';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
 
@@ -25,6 +26,14 @@ import ChooseCourse from './ChooseCourse';
   },
 
 }));
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+
+  // styles we need to apply on draggables
+  ...draggableStyle,
+});
 
 function CurrentClasses (props) {
 
@@ -52,8 +61,19 @@ function CurrentClasses (props) {
   return (
     <div style={{display: "flex", flexDirection: "row"}}>
       <div style={{display: "flex", flexDirection: "row"}}>
-        {props.courses.map(course => 
-          <Box paddingRight={2} paddingBottom={2}>
+        {props.courses.map((course, index) => 
+           <Draggable draggableId={course.title} key={course.title} index={index}>
+           {(provided, snapshot) => (
+             <div
+               ref={provided.innerRef}
+               {...provided.draggableProps}
+               {...provided.dragHandleProps}
+               style={getItemStyle(
+                snapshot.isDragging,
+                provided.draggableProps.style
+              )}
+             >
+               <Box paddingRight={2} paddingBottom={2}>
             <Card className={classes.root} onClick={course.title === 'Add Course' ? handleOpenPopup : null}>
               <CardHeader
                 action={
@@ -71,6 +91,9 @@ function CurrentClasses (props) {
               </CardContent>
             </Card>
           </Box>
+             </div>
+           )}
+         </Draggable>
         )}
       </div>
       <ChooseCourse open={openPopup} handleClose={setOpenPopup} handleAddClass={handleAddClass} semester={props.semester} classList={props.classList}/>
